@@ -16,6 +16,7 @@
   * **['As' and Attrs](#as-and-attrs)**
   * **[Animations and Pseudo Selectors](#animations-and-pseudo-selectors)**
   * **[Pseudo Selectors part Two](#pseudo-selectors-part-two)**
+  * **[Theme](#theme)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -311,6 +312,65 @@ function App() {
         <Emoji as="p">😁</Emoji>
       </Box>
       <Emoji>😒</Emoji>
+    </Wrapper>
+  );
+}
+
+export default App;
+```
+
+### Theme
+`Theme`는 기본적으로 모든 색상들을 가지고 있는 object이다. 모든 색깔을 하나의 object 안에 넣어놨기 때문에 유용하다.    
+그 이유는 component의 색을 일일이 바꾸는 게 아니라 색깔을 바꿀 때 그 object만 바꿔주면 되기 때문이다.
+```javascript
+// index.js
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ThemeProvider } from "styled-components";
+import App from "./App";
+
+const darkTheme = {
+  textColor: "whitesmoke",
+  backgroundColor: "#111",
+};
+
+const lightTheme = {
+  textColor: "#111",
+  backgroundColor: "whitesmoke",
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  // <React.StrictMode>
+  <ThemeProvider theme={darkTheme}>
+    <App />
+  </ThemeProvider>
+  // </React.StrictMode>
+);
+```
+```javascript
+// App.js
+
+import styled, { keyframes } from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.backgroundColor};
+`;
+
+const Title = styled.h1`
+  color: ${(props) => props.theme.textColor};
+`;
+
+function App() {
+  return (
+    <Wrapper>
+      <Title>Hello</Title>
     </Wrapper>
   );
 }
