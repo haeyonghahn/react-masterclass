@@ -13,6 +13,7 @@
 * **[STYLED COMPONENTS](#styled-components)**
   * **[Our first Styled Component](#our-first-styled-component)**
   * **[Adapting and Extending](#adapting-and-extending)**
+  * **['As' and Attrs](#as-and-attrs)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -123,6 +124,70 @@ function App() {
     <Father>
       <Box bgColor="teal" />
       <Circle bgColor="tomato" />
+    </Father>
+  );
+}
+
+export default App;
+```
+
+### 'As' and Attrs
+컴포넌트를 다룰 때 도움이 될 만한 몇 가지 트릭을 배워보자.   
+예를 들어, 컴포넌트의 태그를 바꾸고 싶은데 스타일은 바꾸고 싶지 않을 때와 같은 경우이다.    
+__as__   
+```javascript
+import styled from "styled-components";
+
+const Father = styled.div`
+  display: flex;
+`;
+
+const Box = styled.div`
+  background-color: ${(props) => props.bgColor};
+  width: 100px;
+  height: 100px;
+`;
+
+const Btn = styled.button`
+  color: white;
+  background-color: tomato;
+  border: 0;
+  border-radius: 15px;
+`;
+
+function App() {
+  return (
+    <Father as="header">
+      <Btn>Log in</Btn>
+      <Btn as="a" href="/">
+        Log in
+      </Btn>
+    </Father>
+  );
+}
+
+export default App;
+```
+__Attrs__   
+동일한 컴포넌트에 동일한 속성을 한 번에 주고 싶은 경우이다.   
+```javascript
+import styled from "styled-components";
+
+const Father = styled.div`
+  display: flex;
+`;
+
+const Input = styled.input.attrs({ required: true, minLength: 10 })`
+  background-color: tomato;
+`;
+
+function App() {
+  return (
+    <Father as="header">
+      <Input />
+      <Input />
+      <Input />
+      <Input />
     </Father>
   );
 }
