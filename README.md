@@ -15,6 +15,7 @@
   * **[Adapting and Extending](#adapting-and-extending)**
   * **['As' and Attrs](#as-and-attrs)**
   * **[Animations and Pseudo Selectors](#animations-and-pseudo-selectors)**
+  * **[Pseudo Selectors part Two](#pseudo-selectors-part-two)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -251,6 +252,65 @@ function App() {
       <Box>
         <span>😁</span>
       </Box>
+    </Wrapper>
+  );
+}
+
+export default App;
+```
+
+### Pseudo Selectors part Two
+styled component 안의 element를 선택하는 다른 방법에 대해 알아보자.    
+```javascript
+import styled, { keyframes } from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
+const animation = keyframes`
+  0% {
+    transform: rotate(0deg);
+    border-radius: 0px;
+  } 
+  50% {
+    border-radius: 100px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-radius: 0px;
+  }
+`;
+
+const Emoji = styled.span`
+  font-size: 36px;
+`;
+
+const Box = styled.div`
+  height: 200px;
+  width: 200px;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${animation} 1s linear infinite;
+  ${Emoji} {
+    &:hover {
+      font-size: 98px;
+    }
+    &:active {
+      opacity: 0;
+    }
+  }
+`;
+
+function App() {
+  return (
+    <Wrapper>
+      <Box>
+        <Emoji as="p">😁</Emoji>
+      </Box>
+      <Emoji>😒</Emoji>
     </Wrapper>
   );
 }
