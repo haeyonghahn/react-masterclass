@@ -14,6 +14,7 @@
   * **[Our first Styled Component](#our-first-styled-component)**
   * **[Adapting and Extending](#adapting-and-extending)**
   * **['As' and Attrs](#as-and-attrs)**
+  * **[Animations and Pseudo Selectors](#animations-and-pseudo-selectors)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -189,6 +190,68 @@ function App() {
       <Input />
       <Input />
     </Father>
+  );
+}
+
+export default App;
+```
+
+### Animations and Pseudo Selectors
+__vscode extention__   
+[Markdown Emoji](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-emoji)   
+
+__단축키__     
+- Window : 'Win' + '.'
+- Mac : 'control' + 'command' + 'Space'
+
+styled-component에서 사용하는 animation을 배워보자.   
+```javascript
+import styled, { keyframes } from "styled-components";
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
+const animation = keyframes`
+  0% {
+    transform: rotate(0deg);
+    border-radius: 0px;
+  } 
+  50% {
+    border-radius: 100px;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-radius: 0px;
+  }
+`;
+
+const Box = styled.div`
+  height: 200px;
+  width: 200px;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${animation} 1s linear infinite;
+  span {
+    font-size: 36px;
+    &:hover {
+      font-size: 40px;
+    }
+    &:active {
+      opacity: 0;
+    }
+  }
+`;
+
+function App() {
+  return (
+    <Wrapper>
+      <Box>
+        <span>😁</span>
+      </Box>
+    </Wrapper>
   );
 }
 
