@@ -21,6 +21,7 @@
   * **[Definitely Typed](#definitely-typed)**
   * **[Typing the Props](#typing-the-props)**
   * **[Optional Props](#optional-props)**
+  * **[State](#state)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -550,3 +551,11 @@ function Circle({ bgColor, borderColor, text = "default text" }: CircleProps) {
 export default Circle;
 ```
 - `borderColor ?? bgColor` : `borderColor`가 `undefined`라면 `bgColor`의 값으로 셋팅한다. `borderColor` 값이 존재하면 `borderColor`값을 사용한다.
+
+### State
+`state` 안에 type을 지정하려면 Generics안에 type을 지정한다.   
+일반적으로 초기값을 지정하면 TypeSrciprt가 자동으로 type을 유추하기 때문에 굳이 지정하지 않아도 되지만 상태가 `undefined` 또는 `null`이 될 수도 있거나 
+객체 또는 배열일 때는 지정해주는 것이 좋다.
+```javascript
+const [counter, setCounter] = useState<number | string>(0);
+```
