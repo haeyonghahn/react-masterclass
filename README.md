@@ -20,6 +20,7 @@
 * **[TYPESCRIPT](#typescript)**
   * **[Definitely Typed](#definitely-typed)**
   * **[Typing the Props](#typing-the-props)**
+  * **[Optional Props](#optional-props)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -436,3 +437,67 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
 ```
 
 ### Typing the Props
+component가 필요로 하는 prop을 TypeScript에게 설명할 수 있는지 배워보자.   
+
+__interface__    
+object shape을 잡아준다.   
+아래의 예제에서 bgColor의 타입은 CircleProps의 object라고 말해주고 있다.
+```javascript
+// index.tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
+  // <React.StrictMode>
+  <App />
+  // </React.StrictMode>
+);
+```
+```javascript
+// App.tsx
+import Circle from "./Circle";
+
+function App() {
+  return (
+    <div>
+      <Circle bgColor="teal" />
+      <Circle bgColor="tomato" />
+    </div>
+  );
+}
+
+export default App;
+```
+```javascript
+// Circle.tsx
+import styled from "styled-components";
+
+interface ContainerProps {
+  bgColor: string;
+}
+
+const Container = styled.div<ContainerProps>`
+  width: 200px;
+  height: 200px;
+  background-color: ${(props) => props.bgColor};
+  border-radius: 100px;
+`;
+
+interface CircleProps {
+  bgColor: string;
+}
+
+function Circle({ bgColor }: CircleProps) {
+  return <Container bgColor={bgColor} />;
+}
+
+export default Circle;
+```
+> 참고 : Prop Types 와 차이점    
+> TypeScript으로 정의 시 코드 실행 전에 오류를 알 수 있다.
+
+### Optional Props
