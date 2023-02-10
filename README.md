@@ -19,7 +19,7 @@
   * **[Theme](#theme)**
 * **[TYPESCRIPT](#typescript)**
   * **[Definitely Typed](#definitely-typed)**
-  * **[Typing the Props](typing-the-props)**
+  * **[Typing the Props](#typing-the-props)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
