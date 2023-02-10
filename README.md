@@ -501,3 +501,52 @@ export default Circle;
 > TypeScript으로 정의 시 코드 실행 전에 오류를 알 수 있다.
 
 ### Optional Props
+```javascript
+// App.tsx
+import Circle from "./Circle";
+
+function App() {
+  return (
+    <div>
+      <Circle borderColor="yellow" bgColor="teal" />
+      <Circle bgColor="tomato" text="i'm here" />
+    </div>
+  );
+}
+
+export default App;
+```
+```javascript
+// Circle.tsx
+import styled from "styled-components";
+
+interface ContainerProps {
+  bgColor: string;
+  borderColor: string;
+}
+
+const Container = styled.div<ContainerProps>`
+  width: 200px;
+  height: 200px;
+  background-color: ${(props) => props.bgColor};
+  border-radius: 100px;
+  border: 1px solid ${(props) => props.borderColor};
+`;
+
+interface CircleProps {
+  bgColor: string; //required
+  borderColor?: string; //optional
+  text?: string;
+}
+
+function Circle({ bgColor, borderColor, text = "default text" }: CircleProps) {
+  return (
+    <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
+      {text}
+    </Container>
+  );
+}
+
+export default Circle;
+```
+- `borderColor ?? bgColor` : `borderColor`가 `undefined`라면 `bgColor`의 값으로 셋팅한다. `borderColor` 값이 존재하면 `borderColor`값을 사용한다.
