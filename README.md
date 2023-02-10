@@ -417,7 +417,8 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
    "jsx" : "react-jsx"
   }
   ```
-  - TypeScript `styled-component` 설치
+  - TypeScript `styled-component` 설치   
+  이전 실습에서 `styled-component`를 사용했다. TypeScript `styled-component` 파일을 설치해주자.  
   ```console
   npm i --save-dev @types/styled-components
   ```
