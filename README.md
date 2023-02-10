@@ -17,6 +17,8 @@
   * **[Animations and Pseudo Selectors](#animations-and-pseudo-selectors)**
   * **[Pseudo Selectors part Two](#pseudo-selectors-part-two)**
   * **[Theme](#theme)**
+* **[TYPESCRIPT](#typescript)**
+  * **[Definitely Typed](#definitely-typed)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -377,3 +379,45 @@ function App() {
 
 export default App;
 ```
+
+## TYPESCRIPT
+[TypeScript](https://www.typescriptlang.org/)
+### Definitely Typed
+`create-react-app`에 TypeScript를 설치해보자.   
+[create-react-app add typescript](https://create-react-app.dev/docs/adding-typescript)   
+1. create-react-app을 처음부터 시작할 때 typescript와 함께 설치
+```console
+npx create-react-app my-app --template typescript
+or
+yarn create react-app my-app --template typescript
+```
+2. create-react-app을 중간부터 시작하고 있을 때 typescript를 설치
+```console
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+or
+yarn add typescript @types/node @types/react @types/react-dom @types/jest
+```
+- TypeScript로 변경한 이후엔 파일의 확장자를 바꿔줘야 한다. (`.js` -> `.ts`)   
+- TypeScript와 React에선 `.tsx`를 사용한다.
+  - `index.tsx` 수정
+  ```typescript
+  const root = ReactDOM.createRoot(document.getElementById("root")); (O)
+  const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement); (X)
+  ```
+- 라이브러리나 패키지는 TypeScript로 만들어진 것이 아니기 때문에 TypeScript가 알아볼 수 있는 의존성 파일을 설치해야 한다.
+  - [TypeScript 의존성 파일](#https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types)
+  - `tsconfig.json` 파일 생성
+  ```console
+  npx tsc --init
+  ```
+  - `tsconfig.json` 파일에 `react-jsx` 추가
+  ```console
+  {
+   ...
+   "jsx" : "react-jsx"
+  }
+  ```
+  - TypeScript `styled-component` 설치
+  ```console
+  npm i --save-dev @types/styled-components
+  ```
