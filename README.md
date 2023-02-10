@@ -19,6 +19,7 @@
   * **[Theme](#theme)**
 * **[TYPESCRIPT](#typescript)**
   * **[Definitely Typed](#definitely-typed)**
+  * **[Typing the Props](typing-the-props)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -422,3 +423,16 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
   ```console
   npm i --save-dev @types/styled-components
   ```
+- project structure
+```
+📦 react-masterclass
+ ┣ 📂 public
+ ┣ 📂 src
+ ┃ ┣ 📜 App.tsx
+ ┃ ┗ 📜 index.tsx
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+
+### Typing the Props
