@@ -405,7 +405,7 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
   const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement); (X)
   ```
 - 라이브러리나 패키지는 TypeScript로 만들어진 것이 아니기 때문에 TypeScript가 알아볼 수 있는 의존성 파일을 설치해야 한다.
-  - [TypeScript 의존성 파일](#https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types)
+  - [TypeScript 의존성 파일](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types)
   - `tsconfig.json` 파일 생성
   ```console
   npx tsc --init
