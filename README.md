@@ -23,6 +23,7 @@
   * **[Optional Props](#optional-props)**
   * **[State](#state)**
   * **[Forms](#forms)**
+  * **[Theme](#theme)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -566,7 +567,7 @@ React, TypeScript의 도움을 이용해 form을 구현해보자.
 
 __event에 타입을 씌우는 방법__   
 ```javascript
-// App.js
+// App.tsx
 import { useState } from "react";
 
 function App() {
@@ -616,4 +617,94 @@ const width = event.currentTarget.width
 const {
   currentTarget: { value, tagName, width },
 } = event;
+```
+
+### Theme
+TypeScript와 styled-components 로 테마를 설정해보자.   
+[typescript styled-components](https://styled-components.com/docs/api#typescript)   
+
+__styled.d.ts 파일 생성__   
+`styled.d.ts` 파일은 `npm i --save-dev @types/styled-components` 시 생성된 파일이다. 우리는 테마를 활용하기 위해 해당 파일을 확장해야할 필요가 있다. 즉, 커스터마이징하게 사용하기 위해서 해당 파일을 생성하여 `overriding` 하여 파일을 활용한다.    
+- project structure
+```
+📦 react-masterclass
+ ┣ 📂 public
+ ┣ 📂 src
+ ┃ ┣ 📜 App.tsx
+ ┃ ┣ 📜 index.tsx
+ ┃ ┣ 📜 styled.d.ts
+ ┃ ┗ 📜 theme.ts
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+```javascript
+// App.tsx
+import styled from "styled-components";
+
+const Container = styled.div`
+  background-color: ${(props) => props.theme.bgColor};
+`;
+const H1 = styled.h1`
+  color: ${(props) => props.theme.textColor};
+`;
+
+function App() {
+  return (
+    <Container>
+      <H1>protected</H1>
+    </Container>
+  );
+}
+
+export default App;
+```
+```javascript
+// index.tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ThemeProvider } from "styled-components";
+import App from "./App";
+import { darkTheme, lightTheme } from "./theme";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <ThemeProvider theme={darkTheme}>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>
+);
+```
+```javascript
+// styled.d.ts
+
+// import original module declarations
+import "styled-components";
+
+// and extend them!
+declare module "styled-components" {
+  export interface DefaultTheme {
+    textColor: string;
+    bgColor: string;
+    btnColor: string;
+  }
+}
+```
+```javascript
+import { DefaultTheme } from "styled-components";
+
+export const lightTheme: DefaultTheme = {
+  bgColor: "white",
+  textColor: "black",
+  btnColor: "tomato",
+};
+
+export const darkTheme: DefaultTheme = {
+  bgColor: "black",
+  textColor: "white",
+  btnColor: "teal",
+};
 ```
