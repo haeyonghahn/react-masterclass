@@ -22,6 +22,7 @@
   * **[Typing the Props](#typing-the-props)**
   * **[Optional Props](#optional-props)**
   * **[State](#state)**
+  * **[Forms](#forms)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -558,4 +559,61 @@ export default Circle;
 객체 또는 배열일 때는 지정해주는 것이 좋다.
 ```javascript
 const [counter, setCounter] = useState<number | string>(0);
+```
+
+### Forms
+React, TypeScript의 도움을 이용해 form을 구현해보자.   
+
+__event에 타입을 씌우는 방법__   
+```javascript
+// App.js
+import { useState } from "react";
+
+function App() {
+  const [value, setValue] = useState("");
+  const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+    // console.log(event.currentTarget.value);
+    const {
+      currentTarget: { value },
+    } = event;
+    setValue(value);
+  };
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("hello", value);
+  };
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <input
+          value={value}
+          onChange={onChange}
+          type="text"
+          placeholder="username"
+        />
+        <button>Log in</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+```
+__ES6 문법__   
+```javascript
+const {
+  currentTarget: { value },
+} = event;
+```
+해당 문법은 ES6 문법이다. event 안의 currentTarget 안의 value 값을 기존 이름 그대로 value라는 변수를 만드는 것이다. `const value = event.currentTarget.value` 와 같다. 만약 currentTarget 안에서 value, tagName, width 등을 가져오고 싶다고 한다면 아래와 같이 작성할 것이다.
+```javascript
+const value = event.currentTarget.value
+const tagName = event.currentTarget.tagName
+const width = event.currentTarget.width
+```
+이것을 아래와 같이 작성할 수 있다.
+```javascript
+const {
+  currentTarget: { value, tagName, width },
+} = event;
 ```
