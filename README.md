@@ -565,7 +565,8 @@ const [counter, setCounter] = useState<number | string>(0);
 ### Forms
 React, TypeScript의 도움을 이용해 form을 구현해보자.   
 
-__event에 타입을 씌우는 방법__   
+__event에 타입을 씌우는 방법__     
+[event HTMLElement](https://reactjs.org/docs/events.html)   
 ```javascript
 // App.tsx
 import { useState } from "react";
