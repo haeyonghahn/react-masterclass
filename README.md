@@ -23,7 +23,7 @@
   * **[Optional Props](#optional-props)**
   * **[State](#state)**
   * **[Forms](#forms)**
-  * **[Theme](#theme)**
+  * **[Theme](#theme-1)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
