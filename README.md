@@ -26,6 +26,8 @@
   * **[State](#state)**
   * **[Forms](#forms)**
   * **[Theme](#theme-1)**
+* **[REACT ROUTER V6](#react-router-v6)**
+  * **[BrowserRouter](#browserRouter)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -710,4 +712,103 @@ export const darkTheme: DefaultTheme = {
   textColor: "white",
   btnColor: "teal",
 };
+```
+
+## REACT ROUTER V6
+### BrowserRouter
+__library__   
+```npm
+npm i react-router-dom
+```
+REACT ROUTER V5 와 비교하자면 `Switch` -> `Routes` 로 변경되었다.   
+- project structure
+```
+📦 react-masterclass
+ ┣ 📂 public
+ ┣ 📂 src
+ ┃ ┣ 📂 components
+ ┃ ┃ ┗ 📜 Header.tsx
+ ┃ ┣ 📂 screens
+ ┃ ┃ ┣ 📜 About.tsx
+ ┃ ┃ ┗ 📜 Home.tsx
+ ┃ ┣ 📜 App.tsx
+ ┃ ┣ 📜 index.tsx
+ ┃ ┗ 📜 Router.tsx
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+```javascript
+// Header.tsx
+
+import { Link } from "react-router-dom";
+
+function Header() {
+  return (
+    <ul>
+      <li>
+        <Link to={"/"}>Home</Link>
+      </li>
+      <li>
+        <Link to={"/about"}>About</Link>
+      </li>
+    </ul>
+  );
+}
+
+export default Header;
+```
+```javascript
+// About.tsx
+
+function About() {
+  return <h1>About</h1>;
+}
+
+export default About;
+```
+```javascript
+// Home.tsx
+
+function Home() {
+  return <h1>Home</h1>;
+}
+
+export default Home;
+```
+```javascript
+// App.tsx
+
+import Router from "./Router";
+
+function App() {
+  return (
+    <div>
+      <Router />
+    </div>
+  );
+}
+
+export default App;
+```
+```javascript
+// Router.tsx
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import About from "./screens/About";
+import Home from "./screens/Home";
+
+function Router() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/about" element={<About />}></Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+export default Router;
 ```
