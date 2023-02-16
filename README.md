@@ -31,6 +31,7 @@
   * **[createBrowserRouter](#createbrowserrouter)**
   * **[errorElement](#errorElement)**
   * **[useNavigate](#usenavigate)**
+  * **[useParams](#useParams)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -898,8 +899,8 @@ __project structure__
  ┃ ┃ ┣ 📜 About.tsx
  ┃ ┃ ┣ 📜 Home.tsx
  ┃ ┃ ┗ 📜 NotFound.tsx
- ┃ ┣ 📜 App.tsx
  ┃ ┣ 📜 index.tsx
+ ┃ ┣ 📜 Root.tsx
  ┃ ┗ 📜 Router.tsx
  ┣ 📜 package-lock.json
  ┣ 📜 package.json
@@ -959,7 +960,7 @@ export default Home;
 `<About />` 컴포넌트를 보호하여 `<About />` 컴포넌트는 작동이 되는 것을 확인할 수 있다. 만약 `errorElement: <ErrorComponent />`가 없었다면, `<About />` 컴포넌트를 보호해주지 못하여 어플리케이션 자체 문제가 발생했을 것이다.
 
 ### useNavigate
-페이지를 이동시키고 위치를 바꿔주는 `hook` 이다. 
+페이지를 이동시키고 위치를 바꿔주는 hook 이다. 
 > 참고 : Link 와의 차이점    
 > Link는 사용자가 클릭을 해야한다.   
 > useNavigate 같은 경우 사용자가 로그인해서 redirect 시키고 싶다거나 다른 페이지로 이동시키고 싶을 때 사용한다.
@@ -987,4 +988,115 @@ function Header() {
 }
 
 export default Header;
+```
+
+### useParams
+`useParams` hook 은 <RoutePath> 와 일치하는 현재 URL에서 동적 매개변수의 key/value 쌍 객체를 반환한다.    
+하위 경로는 상위 경로에서 모든 매개변수를 반환한다.   
+__project structure__   
+```
+📦 react-masterclass
+ ┣ 📂 public
+ ┣ 📂 src
+ ┃ ┣ 📂 components
+ ┃ ┃ ┣ 📜 ErrorComponent.tsx
+ ┃ ┃ ┗ 📜 Header.tsx
+ ┃ ┣ 📂 screens
+ ┃ ┃ ┣ 📂 users
+ ┃ ┃ ┃ ┗ User.tsx
+ ┃ ┃ ┣ 📜 About.tsx
+ ┃ ┃ ┣ 📜 Home.tsx
+ ┃ ┃ ┗ 📜 NotFound.tsx
+ ┃ ┣ 📜 db.ts
+ ┃ ┣ 📜 index.tsx
+ ┃ ┣ 📜 Root.tsx
+ ┃ ┗ 📜 Router.tsx
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+```javascript
+// User.tsx
+ 
+import { useParams } from "react-router-dom";
+import { users } from "../../db";
+
+function User() {
+  const { userId } = useParams();
+  return (
+    <h1>
+      User with it {userId} is named: {users[Number(userId) - 1].name}
+    </h1>
+  );
+}
+
+export default User;
+```
+```javascript
+// db.ts
+export const users = [
+  {
+    id: 1,
+    name: "nico",
+  },
+  {
+    id: 2,
+    name: "lynn",
+  },
+];
+```
+```javascript
+import { Link } from "react-router-dom";
+import { users } from "../db";
+
+function Home() {
+  return (
+    <div>
+      <h1>Users</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            <Link to={`/users/${user.id}`}>{user.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Home;
+```
+```javascript
+import { createBrowserRouter } from "react-router-dom";
+import ErrorComponent from "./components/ErrorComponent";
+import Root from "./Root";
+import About from "./screens/About";
+import Home from "./screens/Home";
+import NotFound from "./screens/NotFound";
+import User from "./screens/users/User";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+        errorElement: <ErrorComponent />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "users/:userId",
+        element: <User />,
+      },
+    ],
+    errorElement: <NotFound />,
+  },
+]);
+
+export default router;
 ```
