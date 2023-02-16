@@ -30,6 +30,7 @@
   * **[BrowserRouter](#browserrouter)**
   * **[createBrowserRouter](#createbrowserrouter)**
   * **[errorElement](#errorElement)**
+  * **[useNavigate](#usenavigate)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -956,3 +957,34 @@ export default Home;
 ```
 위의 작성 예제에서 `Home.tsx`의 `users` 변수에 임의로 에러를 발생하여 화면을 확인해본다면, `Router.tsx`에서 `errorElement: <ErrorComponent />` 처리로
 `<About />` 컴포넌트를 보호하여 `<About />` 컴포넌트는 작동이 되는 것을 확인할 수 있다. 만약 `errorElement: <ErrorComponent />`가 없었다면, `<About />` 컴포넌트를 보호해주지 못하여 어플리케이션 자체 문제가 발생했을 것이다.
+
+### useNavigate
+페이지를 이동시키고 위치를 바꿔주는 `hook` 이다. 
+> 참고 : Link 와의 차이점    
+> Link는 사용자가 클릭을 해야한다.   
+> useNavigate 같은 경우 사용자가 로그인해서 redirect 시키고 싶다거나 다른 페이지로 이동시키고 싶을 때 사용한다.
+```javascript
+// Header.tsx
+
+import { Link, useNavigate } from "react-router-dom";
+
+function Header() {
+  const navigate = useNavigate();
+  const onAboutClick = () => {
+    navigate("/about");
+  };
+  return (
+    <ul>
+      <li>
+        <Link to={"/"}>Home</Link>
+      </li>
+      <li>
+        {/* <Link to={"/about"}>About</Link> */}
+        <button onClick={onAboutClick}>About</button>
+      </li>
+    </ul>
+  );
+}
+
+export default Header;
+```
