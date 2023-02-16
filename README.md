@@ -33,6 +33,7 @@
   * **[useNavigate](#usenavigate)**
   * **[useParams](#useParams)**
   * **[Outlet](#outlet)**
+  * **[useOutletContext](#useoutletcontext)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -721,6 +722,7 @@ export const darkTheme: DefaultTheme = {
 ```
 
 ## REACT ROUTER V6
+[React Router](https://reactrouter.com/en/main)
 ### BrowserRouter
 __library__   
 ```npm
@@ -1206,4 +1208,57 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
+```
+
+### useOutletContext
+상위 경로는 하위 경로와 state 또는 기타 값을 공유한다.   
+원하는 경우 context provider를 만들 수 있지만 Outlet에 기본 제공되는 context를 사용할 수도 있다.
+예시로 User 컴포넌트와 Followers 컴포넌트 간의 공유하고 싶은 데이터가 있다면?   
+1. useParams을 사용할 수 있다.
+2. Outlet context를 사용할 수 있다.   
+
+여기선 2번 방법이다.      
+
+> 참고 : Outlet은 상위 화면의 자식들을 render 한다.
+```javascript
+// User.tsx
+
+import { Link, Outlet, useParams } from "react-router-dom";
+import { users } from "../../db";
+
+function User() {
+  const { userId } = useParams();
+  return (
+    <div>
+      <h1>
+        User with it {userId} is named: {users[Number(userId) - 1].name}
+      </h1>
+      <hr />
+      <Link to="followers">See followers</Link>
+      <Outlet
+        context={{
+          nameOfMyUser: users[Number(userId) - 1].name,
+        }}
+      />
+    </div>
+  );
+}
+
+export default User;
+```
+```javascript
+// Followers.tsx
+
+import { useOutletContext } from "react-router-dom";
+
+interface IFollowersContext {
+  nameOfMyUser: string;
+}
+
+function Followers() {
+  const { nameOfMyUser } = useOutletContext<IFollowersContext>();
+  return <h1>Here are {nameOfMyUser}의 followers</h1>;
+}
+
+export default Followers;
 ```
