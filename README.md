@@ -32,6 +32,7 @@
   * **[errorElement](#errorElement)**
   * **[useNavigate](#usenavigate)**
   * **[useParams](#useParams)**
+  * **[Outlet](#outlet)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -1096,6 +1097,108 @@ const router = createBrowserRouter([
       {
         path: "users/:userId",
         element: <User />,
+      },
+    ],
+    errorElement: <NotFound />,
+  },
+]);
+
+export default router;
+```
+
+### Outlet
+`Outlet`은 하위 경로 요소를 렌더링하기 위해 상위 경로 요소에서 사용한다.     
+하위 경로가 렌더링될 때 중첩된 UI가 표시될 수 있다.    
+상위 경로가 정확히 일치하면 하위 index 경로를 렌더링하거나 index 경로가 없으면 아무것도 렌더링하지 않는다.     
+__project structure__   
+```
+📦 react-masterclass
+ ┣ 📂 public
+ ┣ 📂 src
+ ┃ ┣ 📂 components
+ ┃ ┃ ┣ 📜 ErrorComponent.tsx
+ ┃ ┃ ┗ 📜 Header.tsx
+ ┃ ┣ 📂 screens
+ ┃ ┃ ┣ 📂 users
+ ┃ ┃ ┃ ┣ Followers.tsx
+ ┃ ┃ ┃ ┗ User.tsx
+ ┃ ┃ ┣ 📜 About.tsx
+ ┃ ┃ ┣ 📜 Home.tsx
+ ┃ ┃ ┗ 📜 NotFound.tsx
+ ┃ ┣ 📜 db.ts
+ ┃ ┣ 📜 index.tsx
+ ┃ ┣ 📜 Root.tsx
+ ┃ ┗ 📜 Router.tsx
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+```javascript
+// Followers.tsx
+
+function Followers() {
+  return <h1>Followers</h1>;
+}
+
+export default Followers;
+```
+```javascript
+// User.tsx
+
+import { Link, Outlet, useParams } from "react-router-dom";
+import { users } from "../../db";
+
+function User() {
+  const { userId } = useParams();
+  return (
+    <div>
+      <h1>
+        User with it {userId} is named: {users[Number(userId) - 1].name}
+      </h1>
+      <hr />
+      <Link to="followers">See followers</Link>
+      <Outlet />
+    </div>
+  );
+}
+
+export default User;
+```
+```javascript
+// Router.tsx
+
+import { createBrowserRouter } from "react-router-dom";
+import ErrorComponent from "./components/ErrorComponent";
+import Root from "./Root";
+import About from "./screens/About";
+import Home from "./screens/Home";
+import NotFound from "./screens/NotFound";
+import Followers from "./screens/users/Followers";
+import User from "./screens/users/User";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+        errorElement: <ErrorComponent />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "users/:userId",
+        element: <User />,
+        children: [
+          {
+            path: "followers",
+            element: <Followers />,
+          },
+        ],
       },
     ],
     errorElement: <NotFound />,
