@@ -34,6 +34,7 @@
   * **[useParams](#useParams)**
   * **[Outlet](#outlet)**
   * **[useOutletContext](#useoutletcontext)**
+  * **[useSearchParams](#usesearchparams)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -1261,4 +1262,37 @@ function Followers() {
 }
 
 export default Followers;
+```
+ 
+### useSearchParams
+현재 위치에 대한 URL의 쿼리 문자열을 읽고 수정하는데 사용된다.    
+`useState` 와 마찬가지로 useSearchParams은 현재 위치의 search params과 이를 업데이트하는 데 사용할 수 있는 함수라는 두 가지 값의 배열을 반환한다.   
+setSearchParams 함수는 탐색과 같이 작동하지만 URL의 검색 부분에 대해서만 작동한다.
+```javascript
+import { Link, useSearchParams } from "react-router-dom";
+import { users } from "../db";
+
+function Home() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  setTimeout(() => {
+    setSearchParams({
+      day: "today",
+      tomorrow: "1224",
+    });
+  }, 3000);
+  return (
+    <div>
+      <h1>Users</h1>
+      <ul>
+        {users.map((user) => (
+          <li key={user.id}>
+            <Link to={`/users/${user.id}`}>{user.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Home;
 ```
