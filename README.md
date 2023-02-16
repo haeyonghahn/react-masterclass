@@ -29,6 +29,7 @@
 * **[REACT ROUTER V6](#react-router-v6)**
   * **[BrowserRouter](#browserrouter)**
   * **[createBrowserRouter](#createbrowserrouter)**
+  * **[errorElement](#errorElement)**
 
 ## STYLED COMPONENTS
 ### Our first Styled Component
@@ -432,7 +433,8 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
   ```console
   npm i --save-dev @types/styled-components
   ```
-- project structure
+  
+__project structure__
 ```
 📦 react-masterclass
  ┣ 📂 public
@@ -631,7 +633,7 @@ TypeScript와 styled-components 로 테마를 설정해보자.
 
 __styled.d.ts 파일 생성__   
 `styled.d.ts` 파일은 `npm i --save-dev @types/styled-components` 시 생성된 파일이다. 우리는 테마를 활용하기 위해 해당 파일을 확장해야할 필요가 있다. 즉, 커스터마이징하게 사용하기 위해서 해당 파일을 생성하여 `overriding` 하여 파일을 활용한다.    
-- project structure
+__project structure__
 ```
 📦 react-masterclass
  ┣ 📂 public
@@ -722,7 +724,7 @@ __library__
 npm i react-router-dom
 ```
 REACT ROUTER V5 와 비교하자면 `Switch` -> `Routes` 로 변경되었다.   
-- project structure
+__project structure__   
 ```
 📦 react-masterclass
  ┣ 📂 public
@@ -879,3 +881,78 @@ const router = createBrowserRouter([
 
 export default router;
 ```
+
+### errorElement
+컴포넌트에 에러가 발생해서 충돌하거나 컴포넌트의 위치를 찾지 못할 때 사용한다.    
+`errorElement` 컴포넌트가 중요한 이유는 컴포넌트에서 발생하는 문제로부터 다른 컴포넌트를 보호해줄 수 있기 때문이다.  
+__project structure__   
+```
+📦 react-masterclass
+ ┣ 📂 public
+ ┣ 📂 src
+ ┃ ┣ 📂 components
+ ┃ ┃ ┣ 📜 ErrorComponent.tsx
+ ┃ ┃ ┗ 📜 Header.tsx
+ ┃ ┣ 📂 screens
+ ┃ ┃ ┣ 📜 About.tsx
+ ┃ ┃ ┣ 📜 Home.tsx
+ ┃ ┃ ┗ 📜 NotFound.tsx
+ ┃ ┣ 📜 App.tsx
+ ┃ ┣ 📜 index.tsx
+ ┃ ┗ 📜 Router.tsx
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
+```
+```javascript
+// Router.tsx
+
+import { createBrowserRouter } from "react-router-dom";
+import ErrorComponent from "./components/ErrorComponent";
+import Root from "./Root";
+import About from "./screens/About";
+import Home from "./screens/Home";
+import NotFound from "./screens/NotFound";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+        errorElement: <ErrorComponent />
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+    ],
+    errorElement: <NotFound />
+  },
+]);
+
+export default router;
+```
+```javascript
+// ErrorComponent.tsx
+
+function ErrorComponent() {
+  return <h1>This component crashed</h1>
+}
+
+export default ErrorComponent;
+```
+```javascript
+// Home.tsx
+
+function Home() {
+  const users:any = [];
+  return <h1>{users[0].name}</h1>;
+}
+
+export default Home;
+```
+위의 작성 예제에서 `Home.tsx`의 `users` 변수에 임의로 에러를 발생하여 화면을 확인해본다면, `Router.tsx`에서 `errorElement: <ErrorComponent />` 처리로
+`<About />` 컴포넌트를 보호해 주었다. 만약 `errorElement: <ErrorComponent />`가 없었다면, `<About />` 컴포넌트를 보호해주지 못했을 것이다.
