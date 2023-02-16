@@ -5,6 +5,7 @@
 * **[CRYPTO TRACKER](#crypto-tracker)**
     * **[Setup](#setup)**
     * **[Styles](#styles)**
+    * **[Home part One](#home-part-one)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -38,3 +39,9 @@ function App() {
   );
 }
 ```
+
+### Home part One
+> 참고   
+> react-router-dom v5 버전 사용시 URL 은 변하지만 렌더링이 안되는 이슈가 있다.
+> 1. index.tsx 에서 렌더의 React.StrictMode를 div 로 바꾸거나
+> 2. react-router-dom v6를 사용하자.
