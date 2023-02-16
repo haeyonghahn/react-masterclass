@@ -1046,6 +1046,8 @@ export const users = [
 ];
 ```
 ```javascript
+// Home.tsx
+
 import { Link } from "react-router-dom";
 import { users } from "../db";
 
@@ -1067,6 +1069,8 @@ function Home() {
 export default Home;
 ```
 ```javascript
+// Router.tsx
+ 
 import { createBrowserRouter } from "react-router-dom";
 import ErrorComponent from "./components/ErrorComponent";
 import Root from "./Root";
