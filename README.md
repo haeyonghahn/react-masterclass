@@ -20,6 +20,7 @@ npm i react-router-dom@5.3.0 react-query
 
 __library__    
 [styled-reset](https://github.com/zacanger/styled-reset/blob/master/src/index.ts)   
+[flat ui color](https://flatuicolors.com/)
 
 __createGlobalStyle__   
 전역 스타일을 처리하는 함수이다. `styled-reset`에 존재하는 속성을 복사하여 해당 부분에 사용하고 필요한 부분은 추가하여 사용한다.
