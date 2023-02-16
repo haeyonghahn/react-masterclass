@@ -3,7 +3,8 @@
 
 ## 목차
 * **[CRYPTO TRACKER](#crypto-tracker)**
- * **[Setup](#setup)**
+    * **[Setup](#setup)**
+    * **[Styles](#styles)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -11,3 +12,5 @@ __library__
 ```
 npm i react-router-dom@5.3.0 react-query
 ```
+
+### Styles
