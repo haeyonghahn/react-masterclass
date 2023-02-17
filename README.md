@@ -6,7 +6,7 @@
     * **[Setup](#setup)**
     * **[Styles](#styles)**
     * **[Home part One](#home-part-one)**
-    * **[Route State](#route-state)**
+    * **[Route States](#route-states)**
 
 ## CRYPTO TRACKER
 ### Setup
