@@ -6,6 +6,7 @@
     * **[Setup](#setup)**
     * **[Styles](#styles)**
     * **[Home part One](#home-part-one)**
+    * **[Route State](#route-state)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -45,3 +46,26 @@ function App() {
 > react-router-dom v5 버전 사용시 URL 은 변하지만 렌더링이 안되는 이슈가 있다.
 > 1. index.tsx 에서 렌더의 React.StrictMode를 div 로 바꾸거나
 > 2. react-router-dom v6를 사용하자.
+
+### Route States
+> 참고   
+> 코인 Image API   
+> https://coinicons-api.vercel.app/
+> 
+> react-router-dom v6 부터 Link 의 to 에 모든 정보를 담지 않고   
+> 아래와 같은 방법으로 사용하도록 바뀌었다.
+> ```javascript
+> <Link to={} state={} />
+> ```
+> react-router-dom v6 부터 제네릭을 지원하지 않는다.   
+> `<>` 형태가 아닌 `as` 를 사용해야 한다.   
+> 아래와 같은 방법으로 사용해보자.   
+> ```typescript
+> interface RouteState {
+>  state : {
+>    name: string;
+>  }
+> }
+> ...
+> const { state } = useLocation() as RouteState;
+> ```
