@@ -10,6 +10,7 @@
     * **[Coin Data](#coin-data)**
     * **[Data Types](#data-types)**
     * **[Nested Routes part One](#nested-routes-part-one)**
+    * **[Nested Routes part Two](#nested-routes-part-two)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -89,9 +90,13 @@ function App() {
 Nested router 혹은 Nested route 는 route 안에 있는 또 다른 route 이다. Nested router 를 사용하면 웹사이트에서 탭을 사용할 때 유용하다. 스크린 안에 많은 섹션이 나뉘어진 곳에서도 마찬가지이다. 예를 들어, 차트탭과 그래픽탭이 만들어야 한다. 해당 탭들을 State 로 컨트롤 하는 것 대신에 URL로 컨트롤하고 싶을 때 Nested router 를 사용할 수 있다. URL 로 하는 것이 사용성이 높다. 사용자가 바로 접속할 수 있기 때문이다.
 
 > 참고   
-> react-router-dom v6 에서 `Switch` 를 지원하지 않는다. 아래와 같은 방법으로 사용해보자.   
+> react-router-dom v6 에서 `Switch` 는 `Routes` 로 변경되었다. 아래와 같은 방법으로 사용해보자.   
 > 
 > Outlet (중첩 라우트 사용하기)   
 > 자식 라우트의 엘리먼트가 있는 경우 렌더링한다.   
 > `Outlet`은 부모 경로 요소에서 자식 경로 요소를 렌더링하는 데 사용해야 한다.   
 > 이를 통해 하위 경로가 렌더링될 때 중첩된 UI를 표시할 수 있습니다. 부모 라우트가 정확히 일치하면 자식 인덱스 라우트를 렌더링하거나 인덱스 라우트가 없으면 아무것도 렌더링하지 않는다.
+
+### Nested Routes part Two
+__useRouteMacth__   
+특정한 URL에 있는지 여부를 알려준다.
