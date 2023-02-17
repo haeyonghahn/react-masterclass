@@ -8,6 +8,7 @@
     * **[Home part One](#home-part-one)**
     * **[Route States](#route-states)**
     * **[Coin Data](#coin-data)**
+    * **[Data Types](#data-types)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -73,7 +74,12 @@ function App() {
 
 ### Coin Data
 코인 Detail 화면에 뿌려줄 데이터를 셋팅해보자.   
-> 참고   
-> 코인 Detail API   
+> 참고 : 코인 Detail API   
 > https://api.coinpaprika.com/v1/coins/${coinId}     
 > https://api.coinpaprika.com/v1/tickers/${coinId}   
+
+### Data Types
+> 참고 : VSCode 단축키     
+> Ctrl(Command)+D: 같은 문자열 선택   
+> Shift+Alt(Option)+i: 선택한 모든 문자열에 가장 우측 끝으로 포커싱   
+> Ctrl(Command)+Shift+오른쪽 화살표: 현재 선택한 문자열을 기준으로 우측 끝까지 문자열 선택
