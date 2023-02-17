@@ -7,6 +7,7 @@
     * **[Styles](#styles)**
     * **[Home part One](#home-part-one)**
     * **[Route States](#route-states)**
+    * **[Coin Data](#coin-data)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -69,3 +70,10 @@ function App() {
 > ...
 > const { state } = useLocation() as RouteState;
 > ```
+
+### Coin Data
+코인 Detail 화면에 뿌려줄 데이터를 셋팅해보자.   
+> 참고   
+> 코인 Detail API   
+> https://api.coinpaprika.com/v1/coins/${coinId}     
+> https://api.coinpaprika.com/v1/tickers/${coinId}   
