@@ -13,6 +13,7 @@
     * **[Nested Routes part Two](#nested-routes-part-two)**
     * **[React Query part One](#react-query-part-one)**
     * **[React Query part Two](#react-query-part-two)**
+    * **[Price Chart](#price-chart)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -369,3 +370,16 @@ function Coin() {
 >
 > `useQuery(["allCoins"], fetchCoins)`했던 경우도 fetchCoins 뒤에 `()`가 붙었다면 그 함수를 실행하여 리턴된 값(여기서는 promise)이 useQuery의 두번째 인자로 들어가지만 
 > `()`를 붙이지 않고 fetchCoins만 넘기게 된다면 fetchCoins라는 함수 자체가 인자로 넘겨진다.
+
+### Price Chart
+> 참고 : React Router 6에서 Outlet 컴포넌트와 useOutletContext() hook을 사용해서 prop 전달하고 받기   
+> 1. 상위 컴포넌트에서 Outlet 컴포넌트 context에 prop을 전달한다.
+> ```javascript
+> <Outlet context={{ food: "pizza" }} />
+> ```
+> 2. 하위 컴포넌트에서 useOutletContext() hook을 이용해서 props를 받아올 수 있다.
+> ```javascript
+> import { useOutletContext } from "react-router";
+> 
+> const data = useOutletContext<인터페이스>(); // { food: "pizza" }
+> ```
