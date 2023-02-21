@@ -12,6 +12,7 @@
     * **[Nested Routes part One](#nested-routes-part-one)**
     * **[Nested Routes part Two](#nested-routes-part-two)**
     * **[React Query part One](#react-query-part-one)**
+    * **[React Query part Two](#react-query-part-two)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -205,3 +206,158 @@ function Coins() {
 > 참고 
 > 기본적으로 API와 관련되 것들은 컴포넌트와 멀리 떨어져 있도록 하자.    
 > `Loading...` 표시되지 않는 이유는 react-query는 데이터를 캐시에 저장해두고 있다.
+
+### React Query part Two
+__React Query Devtools__     
+Devtools는 render할 수 있는 컴포넌트이다.    
+React Query에 있는 devtools를 import 해오면 캐시에 있는 Query 를 볼 수 있다.
+
+__library__   
+```
+npm i -D @tanstack/react-query-devtools
+```
+```javascript
+// App.tsx
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+...
+function App() {
+  return (
+    <>
+      <GlobalStyle />
+      <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
+    </>
+  );
+}
+...
+```
+![image](https://user-images.githubusercontent.com/31242766/220250618-dde4c1d6-ec01-495e-af35-32745ee9811a.png)    
+
+React Query 는 아래와 같은 과정을 숨겨줄 수 있다. 즉, 필요가 없게 된다.   
+```javascript
+// Coin.tsx
+
+...
+function Coin() {
+  const { coinId } = useParams<RouteParams>();
+  const { state } = useLocation<RouteState>();
+  const priceMatch = useRouteMatch("/:coinId/price");
+  const chartMatch = useRouteMatch("/:coinId/chart");
+  const [loading, setLoading] = useState(true);
+  const [info, setInfo] = useState<InfoData>();
+  const [priceInfo, setPriceInfo] = useState<PriceData>();
+  useEffect(() => {
+    (async () => {
+      const infoData = await (
+        await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
+      ).json();
+      const priceData = await (
+        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
+      ).json();
+      setInfo(infoData);
+      setPriceInfo(priceData);
+      setLoading(false);
+    })();
+  }, [coinId]);
+  ...
+```
+아래와 같은 방법으로 바꿔보자.   
+```javascript
+// api.ts
+
+const BASE_URL = "https://api.coinpaprika.com/v1";
+
+export function fetchCoins() {
+  return fetch(`${BASE_URL}/coins`).then((response) => response.json());
+}
+
+export function fetchCoinInfo(coinId: string) {
+  return fetch(`${BASE_URL}/coins/${coinId}`).then((response) =>
+    response.json()
+  );
+}
+
+export function fetchCoinTickers(coinId: string) {
+  return fetch(`${BASE_URL}/tickers/${coinId}`).then((response) =>
+    response.json()
+  );
+}
+```
+```javascript
+// Coin.tsx
+
+...
+function Coin() {
+  const { coinId } = useParams<RouteParams>();
+  const { state } = useLocation<RouteState>();
+  const priceMatch = useRouteMatch("/:coinId/price");
+  const chartMatch = useRouteMatch("/:coinId/chart");
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+    ["info", coinId],
+    () => fetchCoinInfo(coinId)    //fetcher 함수를 불러와서 URL로부터 오는 coinId를 넣어주자. 
+  );
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+    ["tickers", coinId],
+    () => fetchCoinTickers(coinId) //fetcher 함수를 불러와서 URL로부터 오는 coinId를 넣어주자. 
+  );
+  const loading = infoLoading || tickersLoading;
+  return (
+    <Container>
+      <Header>
+        <Title>{state?.name || "Loading..."}</Title>
+      </Header>
+      {loading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <>
+          <Overview>
+            <OverviewItem>
+              <span>Rank:</span>
+              <span>{infoData?.rank}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Symbol:</span>
+              <span>{infoData?.symbol}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Open Source:</span>
+              <span>{infoData?.open_source ? "Yes" : "No"}</span>
+            </OverviewItem>
+          </Overview>
+          <Description>{infoData?.description}</Description>
+          <Overview>
+            <OverviewItem>
+              <span>Total Suply:</span>
+              <span>{tickersData?.total_supply}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Max Supply:</span>
+              <span>{tickersData?.max_supply}</span>
+            </OverviewItem>
+          </Overview>
+
+          <Tabs>
+            <Tab isActive={chartMatch !== null}>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
+            </Tab>
+            <Tab isActive={priceMatch !== null}>
+              <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+          </Tabs>
+
+          <Switch>
+            <Route path={`/:coinId/price`}>
+              <Price />
+            </Route>
+            <Route path={`/:coinId/chart`}>
+              <Chart />
+            </Route>
+          </Switch>
+        </>
+      )}
+    </Container>
+  );
+}
+...
+```
