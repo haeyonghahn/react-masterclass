@@ -11,6 +11,7 @@
     * **[Data Types](#data-types)**
     * **[Nested Routes part One](#nested-routes-part-one)**
     * **[Nested Routes part Two](#nested-routes-part-two)**
+    * **[React Query part One](#react-query-part-one)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -100,3 +101,107 @@ Nested router 혹은 Nested route 는 route 안에 있는 또 다른 route 이�
 ### Nested Routes part Two
 __useRouteMacth__   
 특정한 URL에 있는지 여부를 알려준다.
+
+### React Query part One
+https://tanstack.com/query/latest   
+https://react-query-v3.tanstack.com/     
+
+__React Query__   
+React 애플리케이션 서버 state를 fetching, caching, synchronizing, updating할 수 있도록 도와주는 라이브러리이다.    
+`global state`를 건드리지 않고 React 및 React Native 애플리케이션에서 데이터를 가져오고 캐시하고 업데이트한다.
+
+__Queries__   
+쿼리는 서버에서 데이터를 가져오기 위해 모든 Promise 기반 메서드(GET 및 POST 메서드 포함)와 함께 사용할 수 있다.   
+제공한 고유 키는 애플리케이션 전체에서 쿼리를 다시 가져오고 캐싱하고 공유하는 데 내부적으로 사용된다.   
+`useQuery`에서 반환된 쿼리 결과에는 템플릿 및 기타 데이터 사용에 필요한 쿼리에 대한 모든 정보가 포함되어 있다.
+
+__Query Key__    
+React Query는 쿼리 키를 기반으로 쿼리 캐싱을 관리한다.   
+https://react-query.tanstack.com/guides/query-keys   
+
+__library__     
+```bash
+$ npm i @tanstack/react-query
+# or
+$ pnpm add @tanstack/react-query
+# or
+$ yarn add @tanstack/react-query
+```
+
+> 참고   
+> react 버전이 18이면 TypeScript에서 react query를 못 불러온다.   
+> `npm i @tanstack/react-query` 을 통해 모듈을 설치하여 사용하자.
+> 그리고 `@tanstack/react-query` 에서 useQuery를 사용할 때 query key의 값은 대괄호로 묶어줘야한다.
+> ```javascript
+> const { isLoading, data } = useQuery(["allCoins"], fetchCoins);
+> ```
+
+React Query 는 아래와 같은 과정을 숨겨줄 수 있다. 즉, 필요가 없게 된다.   
+```javascript
+// Coins.tsx
+
+...
+function Coins() {
+  const [coins, setCoins] = useState<CoinInterface[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("https://api.coinpaprika.com/v1/coins");
+      const json = await response.json();
+      setCoins(json.slice(0, 100));
+      setLoading(false);
+    })();
+  }, []);
+  ...
+```
+아래와 같은 방법으로 바꿔보자.
+```javascript
+// api.ts
+
+export function fetchCoins() {
+  return fetch("https://api.coinpaprika.com/v1/coins").then((response) =>
+    response.json()
+  );
+}
+```
+```javascript
+// Coins.tsx
+
+...
+function Coins() {
+  const { isLoading, data } = useQuery<ICoin[]>(["allCoins"], fetchCoins);
+  return (
+    <Container>
+      <Header>
+        <Title></Title>
+      </Header>
+      {isLoading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <CoinsList>
+          {data?.slice(0, 100).map((coin) => (
+            <Coin key={coin.id}>
+              <Link
+                to={{
+                  pathname: `/${coin.id}`,
+                  state: { name: coin.name },
+                }}
+              >
+                <Img
+                  src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLocaleLowerCase()}`}
+                ></Img>
+                {coin.name} &rarr;
+              </Link>
+            </Coin>
+          ))}
+        </CoinsList>
+      )}
+    </Container>
+  );
+}
+...
+```
+
+> 참고 
+> 기본적으로 API와 관련되 것들은 컴포넌트와 멀리 떨어져 있도록 하자.    
+> `Loading...` 표시되지 않는 이유는 react-query는 데이터를 캐시에 저장해두고 있다.
