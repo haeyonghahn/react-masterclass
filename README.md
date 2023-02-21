@@ -361,3 +361,11 @@ function Coin() {
 }
 ...
 ```
+> 참고 : `() => fetchCoinInfo(coinId)`와 같은 형태로 작성한 이유   
+> useQuery의 두번째 인자를 넘길 때는 함수의 형태로 넘겨야 한다.   
+> `fetchCoinInfo(coinId)`로 작성한다면 해당 함수를 실행하는 것이 되어 리턴된 promise가 바로 들어가 버린다. 
+> 함수를 바로 실행하는 것이 아닌 `() => fetchCoinInfo(coinId)`로 작성하여 해당 함수를 실행하는 함수를 새로 만들어 
+> 인자로 넘겨야 함수 자체를 넘길 수가 있다.
+>
+> `useQuery(["allCoins"], fetchCoins)`했던 경우도 fetchCoins 뒤에 `()`가 붙었다면 그 함수를 실행하여 리턴된 값(여기서는 promise)이 useQuery의 두번째 인자로 들어가지만 
+> `()`를 붙이지 않고 fetchCoins만 넘기게 된다면 fetchCoins라는 함수 자체가 인자로 넘겨진다.
