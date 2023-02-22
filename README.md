@@ -14,6 +14,7 @@
     * **[React Query part One](#react-query-part-one)**
     * **[React Query part Two](#react-query-part-two)**
     * **[Price Chart](#price-chart)**
+    * **[Price Chart part Two](#price-chart-part-two)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -383,3 +384,12 @@ function Coin() {
 > 
 > const data = useOutletContext<인터페이스>(); // { food: "pizza" }
 > ```
+
+### Price Chart part Two
+[apexchart](https://apexcharts.com/)   
+[react-chart](https://apexcharts.com/docs/react-charts/)
+
+__chart library__   
+```
+npm install --save react-apexcharts apexcharts
+```
