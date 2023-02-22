@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -42,14 +41,14 @@ const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
 
-const Loader = styled.div`
+const Loader = styled.span`
   text-align: center;
   display: block;
 `;
 
 const Img = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 35px;
   margin-right: 10px;
 `;
 
@@ -84,7 +83,7 @@ function Coins() {
               >
                 <Img
                   src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLocaleLowerCase()}`}
-                ></Img>
+                />
                 {coin.name} &rarr;
               </Link>
             </Coin>
