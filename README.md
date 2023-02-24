@@ -16,6 +16,7 @@
     * **[Price Chart](#price-chart)**
     * **[Price Chart part Two](#price-chart-part-two)**
     * **[Price Chart part Three](#price-chart-part-three)**
+    * **[Final Touches](#final-touches)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -397,3 +398,21 @@ npm install --save react-apexcharts apexcharts
 
 ### Price Chart part Three
 Chart 옵션을 주어 예쁘게 꾸미기
+
+### Final Touches
+실시간으로 화면을 반영해주도록 수정해보자.   
+
+__useQuery third argument__   
+첫번째 argument는 key 이며 두번째 argument는 fetcher 함수이다.    
+세번째 Object는 선택적인 argument인데 refetch interval을 milliseconds로 할 수 있다.   
+state도 업데이트되며 UI도 업데이트된다.
+
+__React Helmet__   
+React에서 웹사이트 타이틀(탭 이름)을 동적으로 변경할 수 있게 해준다.    
+컴포넌트에서 무엇을 render하면 그게 문서의 head로 가는 것이다.
+
+__library__   
+```
+npm install react-helmet
+npm i --save-dev @types/react-helmet
+```
