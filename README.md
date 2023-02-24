@@ -15,6 +15,7 @@
     * **[React Query part Two](#react-query-part-two)**
     * **[Price Chart](#price-chart)**
     * **[Price Chart part Two](#price-chart-part-two)**
+    * **[Price Chart part Three](#price-chart-part-three)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -393,3 +394,6 @@ __chart library__
 ```
 npm install --save react-apexcharts apexcharts
 ```
+
+### Price Chart part Three
+Chart 옵션을 주어 예쁘게 꾸미기
