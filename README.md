@@ -405,14 +405,18 @@ Chart 옵션을 주어 예쁘게 꾸미기
 __useQuery third argument__   
 첫번째 argument는 key 이며 두번째 argument는 fetcher 함수이다.    
 세번째 Object는 선택적인 argument인데 refetch interval을 milliseconds로 할 수 있다.   
-state도 업데이트되며 UI도 업데이트된다.
+state도 업데이트되며 UI도 업데이트된다. 주기적으로 백그라운드에서 앱을 업데이트할 수 있다.
 
 __React Helmet__   
+[react-helmet](https://www.npmjs.com/package/react-helmet)   
 React에서 웹사이트 타이틀(탭 이름)을 동적으로 변경할 수 있게 해준다.    
-컴포넌트에서 무엇을 render하면 그게 문서의 head로 가는 것이다.
+컴포넌트에서 무엇을 render하면 그게 문서의 head로 가는 것이다.   
+Helmet은 단지 head로 가는 direct link일 뿐이다.
 
 __library__   
 ```
 npm install react-helmet
 npm i --save-dev @types/react-helmet
 ```
+![image](https://user-images.githubusercontent.com/31242766/221356534-d0f14baf-99c9-47f4-ac49-5b16a292a4a3.png)
+![image](https://user-images.githubusercontent.com/31242766/221356559-526f9059-28f3-4546-ad62-b2f859a40310.png)
