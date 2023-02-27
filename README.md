@@ -17,6 +17,7 @@
     * **[Price Chart part Two](#price-chart-part-two)**
     * **[Price Chart part Three](#price-chart-part-three)**
     * **[Final Touches](#final-touches)**
+* **[STATE MANAGEMENT](#state-management)**
     * **[Dark Mode part One](#dark-mode-part-one)**
     * **[Dark Mode part Two](#dark-mode-part-two)**
     * **[Introduction to Recoil](#introduction-to-recoil)**
@@ -425,6 +426,7 @@ npm i --save-dev @types/react-helmet
 ![image](https://user-images.githubusercontent.com/31242766/221356534-d0f14baf-99c9-47f4-ac49-5b16a292a4a3.png)
 ![image](https://user-images.githubusercontent.com/31242766/221356559-526f9059-28f3-4546-ad62-b2f859a40310.png)
 
+## STATE MANAGEMENT
 ### Dark Mode part One
 `Recoil`은 React JS에서 사용할 수 있는 State Management Libaray 이다.    
 여기서 state management가 무엇이고 왜 필요한지 알아보기 위해 암호화폐 앱에 light/dark mode 버튼을 추가한다.   
