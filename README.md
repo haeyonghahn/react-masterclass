@@ -20,6 +20,7 @@
     * **[Dark Mode part One](#dark-mode-part-one)**
     * **[Dark Mode part Two](#dark-mode-part-two)**
     * **[Introduction to Recoil](#introduction-to-recoil)**
+    * **[Introduction to Recoil part Two](#introduction-to-recoil-part-two)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -488,4 +489,22 @@ __useRecoilSate__
 컴포넌트가 atom을 읽고 쓰게하기 위해서는 useRecoilState()를 아래와 같이 사용하면 된다.
 ```javascript
 const [text, setText] = useRecoilState(textState);
+```
+
+### Introduction to Recoil part Two
+__useRecoilValue(state)__   
+Recoil state 값을 반환한다.   
+암묵적으로 주어진 상태에 컴포넌트를 구독한다.   
+읽기 전용 상태와 쓰기 가능 상태에서 모두 동작하므로 컴포넌트가 상태를 읽을 수만 있게 하고 싶을 때에 추천하는 hook이다.   
+해당 hook을 React 컴포넌트에서 사용하면 상태가 업데이트될 때 리렌더링하도록 컴포넌트를 구독한다.   
+```javascript
+const names = useRecoilValue(namesState);
+```
+
+__useSetRecoilState(state)__   
+Recoil state의 값을 업데이트하기 위한 setter 함수를 반환한다.    
+상태를 변경하기 위해 비동기로 사용될 수 있는 setter 함수를 리턴한다.   
+setter는 새로운 값이나 이전 값을 인수로 받는 updater 함수를 넘겨준다.
+```javascript
+const setNamesState = useSetRecoilState(namesState);
 ```
