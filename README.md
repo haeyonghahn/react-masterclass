@@ -17,6 +17,7 @@
     * **[Price Chart part Two](#price-chart-part-two)**
     * **[Price Chart part Three](#price-chart-part-three)**
     * **[Final Touches](#final-touches)**
+    * **[Dark Mode part One](#dark-mode-part-one)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -420,3 +421,13 @@ npm i --save-dev @types/react-helmet
 ```
 ![image](https://user-images.githubusercontent.com/31242766/221356534-d0f14baf-99c9-47f4-ac49-5b16a292a4a3.png)
 ![image](https://user-images.githubusercontent.com/31242766/221356559-526f9059-28f3-4546-ad62-b2f859a40310.png)
+
+### Dark Mode part One
+`Recoil`은 React JS에서 사용할 수 있는 State Management Libaray 이다.    
+여기서 state management가 무엇이고 왜 필요한지 알아보기 위해 암호화폐 앱에 light/dark mode 버튼을 추가한다.   
+
+1. index.tsx에 있는 ThemeProvider를 App 컴포넌트로 옮김
+2. theme.tsx에 light theme를 추가
+3. App 컴포넌트에 isDark state를 추가해서 삼항연산자를 활용해 state 값에 따라 theme가 바뀌게 설정   
+   3.1 current state의 반대값을 return 하는 toggleDark 함수를 만듦 
+4. button 하나 만들고 거기에 click event에 toggleDark 함수를 연동
