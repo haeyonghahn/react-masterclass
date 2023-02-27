@@ -440,3 +440,22 @@ App 컴포넌트에서 자식 컴포넌트로 내려가는 계층 구조로 인�
 `App -> Router -> Coin -> Chart`
 
 Recoil은 state를 따로 buble에 담아서 각 컴포넌트들이 필요할 때 buble에 적속해서 사용할 수 있게 한다.
+
+> 참고 : router v6 기준 useOutletContext를 이용한 방법    
+> ```javascript
+> // App.tsx
+> const [isDark, setIsDark] = useState(false);
+> const toggleDark = () => setIsDark((current) => !current);
+> return (
+>   ...
+>   Outlet context={{toggleDark, isDark}}
+> );
+> ... 
+>
+> // Coins.tsx
+> interface ToggleDarkType {
+>   toggleDark: () => void;
+> }
+> ...
+> const { toggleDark } = useOutletContext();
+> ```
