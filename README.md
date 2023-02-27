@@ -19,6 +19,7 @@
     * **[Final Touches](#final-touches)**
     * **[Dark Mode part One](#dark-mode-part-one)**
     * **[Dark Mode part Two](#dark-mode-part-two)**
+    * **[Introduction to Recoil](#introduction-to-recoil)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -459,3 +460,32 @@ Recoil은 state를 따로 buble에 담아서 각 컴포넌트들이 필요할 �
 > ...
 > const { toggleDark } = useOutletContext();
 > ```
+
+### Introduction to Recoil
+[Recoil](https://recoiljs.org/)    
+__library__   
+```
+npm install recoil
+```
+
+__RecoilRoot__   
+recoil 상태를 사용하는 컴포넌트는 부모 트리 어딘가에 나타나는 RecoilRoot 가 필요하다.   
+Root 컴포넌트가 RecoilRoot를 넣기에 가장 좋은 장소다.   
+
+__Atom__   
+Atom 은 상태(state)의 일부를 나타낸다. Atom은 어떤 컴포넌트에서나 읽고 쓸 수 있다.    
+atom의 값을 읽는 컴포넌트들은 암묵적으로 atom을 구독한다.    
+그래서 atom에 어떤 변화가 있으면 그 atom을 구독하는 모든 컴포넌트들이 리렌더링되는 결과가 발생할 것이다.    
+
+`atom()` : 쓰기 가능한 state를 나타내는 atom을 만든다.
+```javascript
+const textState = atom({
+  key : 'textState', // 유니크한 ID (다른 atom/selector와 관련하여)
+  default : ''       // 기본값 (초기값)
+```
+
+__useRecoilSate__   
+컴포넌트가 atom을 읽고 쓰게하기 위해서는 useRecoilState()를 아래와 같이 사용하면 된다.
+```javascript
+const [text, setText] = useRecoilState(textState);
+```
