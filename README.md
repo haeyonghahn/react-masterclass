@@ -18,6 +18,7 @@
     * **[Price Chart part Three](#price-chart-part-three)**
     * **[Final Touches](#final-touches)**
     * **[Dark Mode part One](#dark-mode-part-one)**
+    * **[Dark Mode part Two](#dark-mode-part-two)**
 
 ## CRYPTO TRACKER
 ### Setup
@@ -431,3 +432,11 @@ npm i --save-dev @types/react-helmet
 3. App 컴포넌트에 isDark state를 추가해서 삼항연산자를 활용해 state 값에 따라 theme가 바뀌게 설정   
    3.1 current state의 반대값을 return 하는 toggleDark 함수를 만듦 
 4. button 하나 만들고 거기에 click event에 toggleDark 함수를 연동
+
+### Dark Mode part Two
+단순 react js로 state management를 할 때 생기는 불편함이 있다.   
+App 컴포넌트에서 자식 컴포넌트로 내려가는 계층 구조로 인해 sate와 state manipulation을 일일이 각 컴포넌트에 전달해줘야 한다.   
+`App -> Router -> Coins`   
+`App -> Router -> Coin -> Chart`
+
+Recoil은 state를 따로 buble에 담아서 각 컴포넌트들이 필요할 때 buble에 적속해서 사용할 수 있게 한다.
