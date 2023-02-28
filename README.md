@@ -5,6 +5,7 @@
 * **[STATE MANAGEMENT](#state-management)**
     * **[To Do Setup](#to-do-setup)**
     * **[Forms](#forms)**
+    * **[Form Validation](#form-validation)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -44,3 +45,21 @@ watch: (names?:string | string[] | (data.options) => void) => unknown
 ```
 input의 변화를 구독한다. 이 메서드는 지정된 input을 감시하고 해당 값을 반환한다.   
 input 값을 렌더링하고 조건에 따라 무엇을 렌더링할지 결정하는데 유용하다.
+
+### Form Validation
+```javascript
+handleSubmit: (
+               (data: Object, e?: Event) => void, 
+               (errors: Object, e?: Event) => void
+              ) => Function
+```
+해당 함수는 form 유효성 검사가 성공하면 form 데이터를 받는다.   
+
+```javascript
+const { register, handleSubmit } = useForm();
+const onValid = (data: any) => {
+  console.log(data);
+};
+
+<form onSubmit={handleSubmit(onValid)} />
+```
