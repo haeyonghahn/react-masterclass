@@ -6,6 +6,7 @@
     * **[To Do Setup](#to-do-setup)**
     * **[Forms](#forms)**
     * **[Form Validation](#form-validation)**
+    * **[Form Errors](#form-errors)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -62,4 +63,21 @@ const onValid = (data: any) => {
 };
 
 <form onSubmit={handleSubmit(onValid)} />
+```
+
+### Form Errors
+React Hook Form은 TypeScript로 빌드되었으며, FormData 유형을 정의하여 form 값을 지원할 수 있다.   
+```typescript
+type FormData = {
+  firstName: string;
+  lastName: string;
+};
+...
+const { register, setValue, handleSubmit, formState: { errors } } = useForm< FormData >();
+```
+
+input에 대한 defaultValues는 사용자가 component와 상호 작용하기 전에 component가 처음 렌더링될 때 초기 값으로 사용된다.   
+모든 input에 대한 defaultValues를 빈 문자열이나 null과 같은 정의되지 않은 값으로 설정하는 것이 좋다.   
+```typescript
+defaultValues: Record<string, any> = {}
 ```
