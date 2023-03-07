@@ -11,6 +11,8 @@
     * **[Recap](#recap)**
     * **[Add To Do](#add-to-do)**
     * **[Refactoring](#refactoring)**
+    * **[Categories](#categories)**
+    * **[Immutability part One](#immutability-part-one)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -149,3 +151,13 @@ __useRecoilState(state)__
 > useRecoilValue : state 값을 리턴    
 > useSetRecoilState : setter 함수를 리턴    
 > useRecoilState : state, setter 함수를 모두 리턴    
+
+### Immutability part One
+__Array.prototype.findIndex()__   
+findIndex() 메서드는 주어진 판별 함수를 만족하는 배열의 첫 번째 요소에 대한 인덱스를 반환한다.   
+만족하는 요소가 없으면 -1을 반환한다.
+```javascript
+const array1 = [5, 12, 8, 130, 44];
+const isLargeNumber = (element) => element > 13;
+console.log(array1.findIndex(isLargeNumber)); // 3
+```
