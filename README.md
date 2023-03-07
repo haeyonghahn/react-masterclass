@@ -13,6 +13,7 @@
     * **[Refactoring](#refactoring)**
     * **[Categories](#categories)**
     * **[Immutability part One](#immutability-part-one)**
+    * **[Inmmutability part Two](#inmmutability-part-two)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -161,3 +162,19 @@ const array1 = [5, 12, 8, 130, 44];
 const isLargeNumber = (element) => element > 13;
 console.log(array1.findIndex(isLargeNumber)); // 3
 ```
+
+### Inmmutability part Two
+__Array.prototype.slice()__   
+slice() 메서드는 어떤 배열의 begin부터 end까지(end 미포함)에 대한 얕은 복사본을 새로운 배열 객체로 반환한다.   
+원본 배열은 바뀌지 않는다. end가 생략되면 slice()는 배열의 끝까지(arr.length) 추출한다.
+```javascript
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2)); // ['camel', 'duck', 'elephant']
+console.log(animals.slice(2, 4))); // ['camel' 'duck']
+```
+
+> 참고    
+> 상태관리툴을 사용할 때는 기본적으로 mutate를 사용하지 않고 상태를 변경해줘야 한다.      
+> 그냥 `const newTodos = prevTodos` 처럼 작성하면 prevTodos를 가리키는 newTodos에 할당하기 때문에   
+> newTodos를 변경하면 prevTodos도 같이 변경되어 mutate 되게 된다. 그래서 완전히 새로운 object나 array를 만들어주고
+> 거기에 요소들을 그대로 입력해주기위해 spread 방식을 사용한다. 다른 방식으로는 assign 등을 사용해 할달할 수 있다.
