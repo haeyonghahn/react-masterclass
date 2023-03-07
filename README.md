@@ -8,6 +8,7 @@
     * **[Form Validation](#form-validation)**
     * **[Form Errors](#form-errors)**
     * **[Custom Validation](#custom-validation)**
+    * **[Recap](#recap)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -109,4 +110,30 @@ setErrors()로 설장한 메시지를 삭제할 있다.
 clearErrors("username");
 ...
 onClick={() => clearErrors(["firstName", "lastName"])}
+```
+
+### Recap
+__setValue__    
+```javascript
+setValue: (
+  name: string,
+  value: unknown, config?: Object
+) => void  
+```
+필드 값을 업데이트한다.   
+등록된 필드의 값을 동적으로 설정하고 form state를 확인하고 업데이트하는 옵션을 가질 수 있다.   
+동시에 불필요한 rerender를 피할 수 있다.
+
+__reset__   
+```javascript
+reset: (
+  value?: Record,
+  options?: Record
+) => void
+```
+form state와 value 재설정   
+전체 form state 또는 state의 일부를 재설정할 수 있다.
+```javascript
+reset(); // form 전체 리셋
+reset({ email: "" }); // form에서 특정 필드만 리셋
 ```
