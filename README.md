@@ -9,6 +9,7 @@
     * **[Form Errors](#form-errors)**
     * **[Custom Validation](#custom-validation)**
     * **[Recap](#recap)**
+    * **[Add To Do](#add-to-do)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -137,3 +138,13 @@ form state와 value 재설정
 reset(); // form 전체 리셋
 reset({ email: "" }); // form에서 특정 필드만 리셋
 ```
+
+### Add To Do
+__useRecoilState(state)__   
+첫 요소가 상태의 값이며, 두번째 요소가 호출되었을 때 주어진 값을 업데이트하는 setter 함수인 튜플을 리턴한다.   
+해당 hook은 암묵적으로 주어진 상태의 컴포넌트를 구독한다.
+
+> 참고   
+> useRecoilValue : state 값을 리턴    
+> useSetRecoilState : setter 함수를 리턴    
+> useRecoilState : state, setter 함수를 모두 리턴    
