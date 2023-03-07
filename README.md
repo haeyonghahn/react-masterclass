@@ -7,6 +7,7 @@
     * **[Forms](#forms)**
     * **[Form Validation](#form-validation)**
     * **[Form Errors](#form-errors)**
+    * **[Custom Validation](#custom-validation)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -80,4 +81,32 @@ input에 대한 defaultValues는 사용자가 component와 상호 작용하기 �
 모든 input에 대한 defaultValues를 빈 문자열이나 null과 같은 정의되지 않은 값으로 설정하는 것이 좋다.   
 ```typescript
 defaultValues: Record<string, any> = {}
+```
+
+### Custom Validation
+__setError__   
+```javascript
+setError(
+  name: string,
+  error: FieldError, 
+  { shouldFocus?: boolean }
+```
+하나 이상의 오류를 수동으로 설정할 수 있다.   
+`shouldFocus` : boolean 오류를 설정하는 동안 input에 focust를 맞춰야 한다. input이 비활성화되면 작동하지 않는다.
+
+__validate__   
+```javascript
+validate: Function | Object
+```
+
+__clearErrors__   
+```jaavscript
+clearErrors: (name?: string | string[]) => void
+```
+이 함수는 form의 오류 메시지를 수동으로 지울 수 있다.
+setErrors()로 설장한 메시지를 삭제할 있다.
+```javascript
+clearErrors("username");
+...
+onClick={() => clearErrors(["firstName", "lastName"])}
 ```
