@@ -10,6 +10,7 @@
     * **[Custom Validation](#custom-validation)**
     * **[Recap](#recap)**
     * **[Add To Do](#add-to-do)**
+    * **[Refactoring](#refactoring)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
