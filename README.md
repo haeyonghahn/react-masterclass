@@ -14,6 +14,7 @@
     * **[Categories](#categories)**
     * **[Immutability part One](#immutability-part-one)**
     * **[Inmmutability part Two](#inmmutability-part-two)**
+    * **[Selectors part One](#selectors-part-one)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -178,3 +179,8 @@ console.log(animals.slice(2, 4))); // ['camel' 'duck']
 > 그냥 `const newTodos = prevTodos` 처럼 작성하면 prevTodos를 가리키는 newTodos에 할당하기 때문에   
 > newTodos를 변경하면 prevTodos도 같이 변경되어 mutate 되게 된다. 그래서 완전히 새로운 object나 array를 만들어주고
 > 거기에 요소들을 그대로 입력해주기위해 spread 방식을 사용한다. 다른 방식으로는 assign 등을 사용해 할달할 수 있다.
+
+### Selectors part One
+[selectors](https://recoiljs.org/ko/docs/basic-tutorial/selectors/)   
+__Selectors__   
+Selector는 파생된 state(derived state)의 일부를 나타낸다. 즉, 기존 state를 가져와서 기존 state를 이용해 새로운 state를 만들어서 반환할 수 있다. 기존 state를 이용만할 뿐 변형시키지 않는다. derived state는 다른 데이터에 의존하는 동적인 데이터를 만들 수 있기 때문에 강력한 개념이다.
