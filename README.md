@@ -16,6 +16,7 @@
     * **[Inmmutability part Two](#inmmutability-part-two)**
     * **[Selectors part One](#selectors-part-one)**
     * **[Selectors part Two](#selectors-part-two)**
+    * **[Enums](#enums)**
 
 ## STATE MANAGEMENT
 ### To Do Setup
@@ -188,7 +189,8 @@ Selector는 파생된 state(derived state)의 일부를 나타낸다. 즉, 기�
 
 ### Selectors part Two
 > 참고 onInput과 onChange 이벤트 차이   
-> React의 onChange는 모든 변경에 대해 발생하므로 DOM의 change 이벤트(http://mng.bz/lJ37) 가 매번 발생하지 않고 포커스를 잃었을 때만 발생하는 것과는 차이가 있다. 예를 들어 
-> `<input type="text">`의 경우 사용자가 입력할 때 onChange 이벤트가 발생하지 않을 수도 있고, 사용자가 탭이나 클릭으로 포커스를 잃을 때 일반적인 HTML 브라우저 이벤트로 onChange 이벤트가 발생한다. 앞에서 언급한 것처럼 React의 경우에는 onChange 이벤트가 포커스를 잃을 때뿐만 아니라 키 입력 시마다 발생한다. 반면에 React의 onInput 이벤트는 DOM의 onInput 이벤트를 감싼 것으로, 변경할 때마다 발생한다.
->
-> 결론은 React의 onChange와 HTML의 onChange는 서로 다르게 동작한다는 것이다. React의 onChange 이벤트는 HTML의 onInput 이벤트와 더 비슷하고 일관성이 있다. React에서는 가급적 onChange 이벤트를 활용하고, onInput 이벤트의 네이티브 구현에 접근해야 하는 경우에만 onInput을 사용하는 것을 추천한다. React가 감싸서 만든 onChange의 동작이 일관성 있어 믿을 수 있기 때문이다.
+> onchange 이벤트는 값이 변경된 직후가 아니라, 변경되고 포커스를 잃을 때 발생한다.    
+> oninput 이벤트는 값이 바뀔 때마다 발생하는 이벤트이다.
+
+### Enums
+enum은 TypeScript가 제공하는 기능 중 하나이다. enum은 열거형으로 이름이 있는 상수들의 집합을 정의할 수 있다. 열거형을 사용하면 의도를 문서화하거나 구분되는 사례 집합을 더 쉽게 만들 수 있다. TypeScript는 숫자와 문자열 기반 열거형을 제공한다.
