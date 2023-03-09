@@ -5,6 +5,7 @@
 * **[TRELLO CLONE](#trello-clone)**
    * **[Get Selectors](#get-selectors)**
    * **[Set Selectors](#set-selectors)**
+   * **[Drag and Drop part One](#drag-and-drop-part-one)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -20,4 +21,18 @@ const proxySelector = selector({
   ),
   set: ({ set }, newValue) => set(myAtom, newValue);
 });
+```
+
+### Drag and Drop part One
+__react_beautiful-dnd__   
+[react beautiful dnd](https://www.npmjs.com/package/react-beautiful-dnd)   
+React로 드래그 앤 드롭 기능을 만들 수 있는 라이브러리이다.   
+```
+npm i react-beautiful-dnd
+npm i --save-dev @types/react-beautiful-dnd
+```
+버전 문제 발생 시 
+```
+npm i react-beautiful-dnd --legacy-peer-deps
+npm i @types/react-beautiful-dnd --legacy-peer-deps
 ```
