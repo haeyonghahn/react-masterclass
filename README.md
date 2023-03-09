@@ -4,6 +4,7 @@
 ## 목차
 * **[TRELLO CLONE](#trello-clone)**
    * **[Get Selectors](#get-selectors)**
+   * **[Set Selectors](#set-selectors)**
    
 ## TRELLO CLONE
 ### Get Selectors
