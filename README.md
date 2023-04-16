@@ -6,6 +6,7 @@
    * **[Get Selectors](#get-selectors)**
    * **[Set Selectors](#set-selectors)**
    * **[Drag and Drop part One](#drag-and-drop-part-one)**
+   * **[Drag and Drop part Two](#drag-and-drop-part-two)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -36,3 +37,22 @@ npm i --save-dev @types/react-beautiful-dnd
 npm i react-beautiful-dnd --legacy-peer-deps
 npm i @types/react-beautiful-dnd --legacy-peer-deps
 ```
+
+### Drag and Drop part Two
+```javascript
+...
+<Draggable draggableId="first" index={0}>
+  {(provided) => (
+    <li
+      ref={provided.innerRef}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+    >
+      One
+    </li>
+  )}
+</Draggable>
+...
+```
+요소가 기본적으로 드래그 되기를 원한다면 `draggableProps`를 설정한다.    
+어디에서든지 집어서 드래그하고 싶다면 `dragHandleProps`를 설정한다.
