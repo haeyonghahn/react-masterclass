@@ -7,6 +7,7 @@
    * **[Set Selectors](#set-selectors)**
    * **[Drag and Drop part One](#drag-and-drop-part-one)**
    * **[Drag and Drop part Two](#drag-and-drop-part-two)**
+   * **[Styles and Placeholders](#Styles-and-placeholders)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -56,3 +57,9 @@ npm i @types/react-beautiful-dnd --legacy-peer-deps
 ```
 요소가 기본적으로 드래그 되기를 원한다면 `draggableProps`를 설정한다.    
 어디에서든지 집어서 드래그하고 싶다면 `dragHandleProps`를 설정한다.
+
+### Styles and Placeholders
+`provided.placeholder (?ReactElement)`    
+Draggable 엘리먼트를 드래그하는 동안 position: fixed(영역을 고정시킴)를 적용한다.    
+Draggable을 드래그할 때 Droppable 리스트가 작아지는 것을 방지하기 위해 필요하다.    
+Draggable 노드의 형제로 렌더링하는 것이 좋다.   
