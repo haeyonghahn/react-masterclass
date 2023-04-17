@@ -8,6 +8,8 @@
    * **[Drag and Drop part One](#drag-and-drop-part-one)**
    * **[Drag and Drop part Two](#drag-and-drop-part-two)**
    * **[Styles and Placeholders](#Styles-and-placeholders)**
+   * **[Reordering](#reordering)**
+   * **[Reordering part Two](#reordering-part-two)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -63,3 +65,42 @@ npm i @types/react-beautiful-dnd --legacy-peer-deps
 Draggable 엘리먼트를 드래그하는 동안 position: fixed(영역을 고정시킴)를 적용한다.    
 Draggable을 드래그할 때 Droppable 리스트가 작아지는 것을 방지하기 위해 필요하다.    
 Draggable 노드의 형제로 렌더링하는 것이 좋다.   
+
+### Reordering
+`onDragEnd`   
+result: DropResult   
+result.draggabledId : 드래그되었던 Draggable의 id.    
+result.type : 드래그 되었던 Draggable의 type.   
+result.source : Draggable 이 시작된 위치(location).    
+result.destination : Draggable 이 끝난 위치(location). 만약에 Draggable이 시작한 위치와 같은 위치로 돌아오면 이 destination 값은 null이 될 것이다.   
+
+`Array.prototype.splice()`   
+`splice` 메서드는 배열의 기존 요소를 삭제 또는 교체하거나 새 요소를 추가하여 배열의 내용을 변경한다.
+
+```javascript
+const months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb');
+console.log(months); // expected output: Array ["Jan", "Feb", "March", "April", "June"]
+```
+
+### Reordering part Two
+`<Draggable /> list의 키`   
+< Draggable /> list를 렌더링하는 경우 각 < Draggable />에 key prop을 추가하는 것이 중요하다.    
+
+규칙
+key는 list 내에서 고유해야 한다.   
+key에 item의 index가 포함되어서는 안된다. (map의 index사용 X)
+일반적으로 draggableId를 key로 사용하면 된다.   
+> 참고 : list에 key가 없으면 React가 경고하지만 index를 key로 사용하는 경우 경고하지 않는다.   
+
+```javascript
+...
+return items.map((item, index) => (
+< Draggable
+// adding a key is important!
+key={item.id}
+draggableId={item.id}
+index={index}
+>
+...
+```
