@@ -9,6 +9,7 @@
    * **[Drag and Drop part Two](#drag-and-drop-part-two)**
    * **[Styles and Placeholders](#Styles-and-placeholders)**
    * **[Reordering](#reordering)**
+   * **[Reordering part Two](#reordering-part-two)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -80,4 +81,26 @@ result.destination : Draggable 이 끝난 위치(location). 만약에 Draggable�
 const months = ['Jan', 'March', 'April', 'June'];
 months.splice(1, 0, 'Feb');
 console.log(months); // expected output: Array ["Jan", "Feb", "March", "April", "June"]
+```
+
+### Reordering part Two
+`<Draggable /> list의 키`   
+< Draggable /> list를 렌더링하는 경우 각 < Draggable />에 key prop을 추가하는 것이 중요하다.    
+
+규칙
+key는 list 내에서 고유해야 한다.   
+key에 item의 index가 포함되어서는 안된다. (map의 index사용 X)
+일반적으로 draggableId를 key로 사용하면 된다.   
+> 참고 : list에 key가 없으면 React가 경고하지만 index를 key로 사용하는 경우 경고하지 않는다.   
+
+```javascript
+...
+return items.map((item, index) => (
+< Draggable
+// adding a key is important!
+key={item.id}
+draggableId={item.id}
+index={index}
+>
+...
 ```
