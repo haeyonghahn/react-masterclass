@@ -107,7 +107,9 @@ index={index}
 ```
 
 ### Performance
-`React.memo`    
+드래그를 자주 하다보면 흔들리는 현상을 발견할 수 있다. 해당 부분의 성능을 올려보자.   
+
+`React.memo`     
 React.memo는 고차 컴포넌트(Higher Order Component)이다.    
 컴포넌트가 동일한 props로 동일한 결과를 렌더링해낸다면,  
 React.memo를 호출하고 결과를 메모이징(Memoizing)하도록 래핑하여 경우에 따라 성능 향상을 누릴 수 있다.   
