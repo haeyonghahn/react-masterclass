@@ -12,6 +12,7 @@
    * **[Reordering part Two](#reordering-part-two)**
    * **[Performance](#performance)**
    * **[Multi Boards](#multi-boards)**
+   * **[Same Board Movement](#same-board-movement)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -140,4 +141,26 @@ c: false
 }
 
 console.log(Object.keys(object)); // Array ["a", "b", "c"]
+```
+
+### Same Board Movement
+`ES6: Computed property name`   
+객체의 key값을 표현식(변수, 함수 등을 이용)을 통해 지정하는 것이다.   
+```javascript
+return {
+  ...allBoards,
+  [source.droppableId]: boardCopy,
+};
+```
+```javascript
+var name1 = "장동건";
+var name2 = "원빈";
+var num = 1;
+ 
+var obj = {
+    [num+") "+name1]:"반장",
+    [num+1+") "+name2]:"부반장"
+};
+ 
+console.log(obj); // { 1) 장동건: "반장", 2) 원빈: "부반장" }
 ```
