@@ -11,7 +11,7 @@
    * **[Reordering](#reordering)**
    * **[Reordering part Two](#reordering-part-two)**
    * **[Performance](#performance)**
-   * **[Multi Boards](#multiboards)**
+   * **[Multi Boards](#multi-boards)**
    
 ## TRELLO CLONE
 ### Get Selectors
