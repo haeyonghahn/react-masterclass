@@ -144,6 +144,14 @@ console.log(Object.keys(object)); // Array ["a", "b", "c"]
 ```
 
 ### Same Board Movement
+`To Do에만 큰따음표가 붙는 이유`   
+```javascript
+"To Do": ["a", "b"], //To 와 Do 사이에 띄어쓰기가 있기 때문
+Doing: ["c", "d", "e"],
+Done: ["f"],
+```
+
+
 `ES6: Computed property name`   
 객체의 key값을 표현식(변수, 함수 등을 이용)을 통해 지정하는 것이다.   
 ```javascript
