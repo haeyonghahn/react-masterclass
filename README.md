@@ -11,6 +11,7 @@
    * **[Reordering](#reordering)**
    * **[Reordering part Two](#reordering-part-two)**
    * **[Performance](#performance)**
+   * **[Multi Boards](#multi-boards)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -125,3 +126,18 @@ function MyComponent(props) {
 export default React.memo(MyComponent, areEqual);
 ```
 > 참고 : React.memo를 사용할 때는 function에서 export하면 안되고 파일 자체에서 export 해야한다.
+
+### Multi Boards
+`Object.keys(obj)`   
+
+Object.keys() 메소드는 주어진 객체의 속성 이름들을 일반적인 반복문과 동일한 순서로 순회되는 열거할 수 있는 배열로 반환한다.   
+
+```javascript
+const object = {
+a: 'something',
+b: 42,
+c: false
+}
+
+console.log(Object.keys(object)); // Array ["a", "b", "c"]
+```
