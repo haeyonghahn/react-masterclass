@@ -13,6 +13,8 @@
    * **[Performance](#performance)**
    * **[Multi Boards](#multi-boards)**
    * **[Same Board Movement](#same-board-movement)**
+   * **[Cross Board Movement](#cross-board-movement)**
+   * **[Droppable Snapshot](#droppable-snapshot)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -151,7 +153,6 @@ Doing: ["c", "d", "e"],
 Done: ["f"],
 ```
 
-
 `ES6: Computed property name`   
 객체의 key값을 표현식(변수, 함수 등을 이용)을 통해 지정하는 것이다.   
 ```javascript
@@ -172,3 +173,7 @@ var obj = {
  
 console.log(obj); // { 1) 장동건: "반장", 2) 원빈: "부반장" }
 ```
+
+### Cross Board Movement
+
+### Droppable Snapshot
