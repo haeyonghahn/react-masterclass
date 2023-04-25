@@ -15,6 +15,7 @@
    * **[Same Board Movement](#same-board-movement)**
    * **[Cross Board Movement](#cross-board-movement)**
    * **[Droppable Snapshot](#droppable-snapshot)**
+   * **[final-styles](#final-styles)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -194,3 +195,9 @@ placeholder가 사용되고 있는지 여부
 `Boolean(snapshot.draggingFromThisWith)으로 감싼 이유`   
 snapshot.draggingFromThisWith 값이 `undefined`일 경우 true/false로 치환하기 위해 Boolean으로 감싼 것이다.   
 Boolean()은 true/false 로 값을 변환한다.
+
+### Final Styles
+[Draggablestate snapshot](https://github.com/atlassian/react-beautiful-dnd/blob/HEAD/docs/api/draggable.md#2-snapshot-draggablestatesnapshot)
+
+`isDragging: boolean`   
+Draggable이 활발하게 드래그 중이거나 드롭 애니메이션인 경우 true로 설정한다.
