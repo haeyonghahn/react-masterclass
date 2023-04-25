@@ -17,6 +17,8 @@
    * **[Droppable Snapshot](#droppable-snapshot)**
    * **[Final Styles](#final-styles)**
    * **[Refs](#refs)**
+   * **[Task Objects](#task-objects)**
+   * **[Creating Tasks](#creating-tasks)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -211,3 +213,5 @@ Draggable이 활발하게 드래그 중이거나 드롭 애니메이션인 경�
 
 ### Task Objects
 [React Hook Form](https://react-hook-form.com/)
+
+### Creating Tasks
