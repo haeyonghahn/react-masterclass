@@ -15,7 +15,7 @@
    * **[Same Board Movement](#same-board-movement)**
    * **[Cross Board Movement](#cross-board-movement)**
    * **[Droppable Snapshot](#droppable-snapshot)**
-   * **[final-styles](#final-styles)**
+   * **[Final Styles](#final-styles)**
    
 ## TRELLO CLONE
 ### Get Selectors
