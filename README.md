@@ -16,6 +16,7 @@
    * **[Cross Board Movement](#cross-board-movement)**
    * **[Droppable Snapshot](#droppable-snapshot)**
    * **[Final Styles](#final-styles)**
+   * **[Refs](#refs)**
    
 ## TRELLO CLONE
 ### Get Selectors
@@ -201,3 +202,9 @@ Boolean()은 true/false 로 값을 변환한다.
 
 `isDragging: boolean`   
 Draggable이 활발하게 드래그 중이거나 드롭 애니메이션인 경우 true로 설정한다.
+
+### Refs
+`ref`는 react 코드를 이용해 HTML 요소를 지정하고 가져올 수 있는 방법이다.   
+
+[useRef](https://ko.reactjs.org/docs/hooks-reference.html#useref)    
+[HTMLInputElement methods](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#methods)    
