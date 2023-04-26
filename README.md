@@ -4,6 +4,7 @@
 ## 목차
 * **[ANIMATIONS](#animations)**
    * **[Installation](#istallation)**
+   * **[Basic Animations](#basic-animations)**
    
 ### Installation
 __Framer Motion__   
@@ -51,3 +52,7 @@ module.exports = {
   },
 };
 ```
+
+### Basic Animations   
+https://www.framer.com/docs/animation   
+Framer Motion의 애니메이션은 모션 컴포넌트의 유연한 animate 속성을 통해 제어된다. 간단한 애니메이션의 경우 animate props에서 직접 값을 설정할 수 있다.   
