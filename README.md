@@ -14,7 +14,7 @@ https://github.com/framer/motion/tree/main/packages/framer-motion
 npm install framer-motion
 ```
 
-__Craco__   
+__CRACO__   
 https://github.com/gsoft-inc/craco    
 https://github.com/gsoft-inc/craco/blob/master/packages/craco/README.md#installation    
 framer motion 설치 시 create-react-app version 4 버전에서 에러 발생 시 설치한다.   
@@ -22,6 +22,15 @@ framer motion 설치 시 create-react-app version 4 버전에서 에러 발생 �
 npm install @craco/craco --save
 ```
 ```
+📦 react-masterclass
+ ┣ 📂 public
+ ┣ 📂 src
+ ┃ ┣ 📜 App.tsx
+ ┃ ┗ 📜 index.tsx
+ ┣ 📜 craco.config.js
+ ┣ 📜 package-lock.json
+ ┣ 📜 package.json
+ ┗ 📜 tsconfig.json
 ```
 ```js
 //craco.config.js
