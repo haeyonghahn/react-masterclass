@@ -11,6 +11,7 @@
    * **[Gestures part Two](#gestures-part-two)**
    * **[MotionValues part One](#motionvalues-part-one)**
    * **[MotionValues part Two](#motionvalues-part-two)**
+   * **[MotionValues part Three](#motionvalues-part-three)**
    
 ### Installation
 __Framer Motion__   
@@ -185,8 +186,8 @@ MotionValue는 문자열이나 숫자가 될 수 있다. get 메소드로 값을
 
 ### MotionValues part Two
 [useTransform](https://www.framer.com/docs/motionvalue/##usetransform)    
-useTransform hook을 통해 MotionValues를 연결합니다.   
-useTransform()는 한 값 범위에서 다른 값 범위로 매핑하여 다른 MotionValue의 output을 변환하는 MotionValue를 만듭니다.   
+useTransform hook을 통해 MotionValues를 연결한다.   
+useTransform()는 한 값 범위에서 다른 값 범위로 매핑하여 다른 MotionValue의 output을 변환하는 MotionValue를 만든다.   
 x(Motion Value)값을 다른 output값으로 변환해준다.   
 ```javascript
 const x = useMotionValue(0);
@@ -195,4 +196,21 @@ const output = [0, 1, 0];
 const opacity = useTransform(x, input, output);
 
 return <motion.div drag="x" style={{ x, input, output }} />
+```
+
+### MotionValues part Three
+[useScroll](https://www.framer.com/docs/motionvalue/##useviewportscroll)    
+useScroll(): ScrollMotionValues   
+뷰포트가 스크롤될 때 업데이트되는 MotionValues를 리턴한다.   
+아래 값들은 모두 MotionValue<number>를 넘겨준다.   
+scrollX: 실제 수평 스크롤 픽셀   
+scrollY: 실제 수직 스크롤 픽셀   
+scrollXProgress: 0 ~ 1 사이의 수평 스크롤   
+scrollYProgress: 0 ~ 1 사이의 수직 스크롤(가장 상단 0, 가장 하단 1)   
+
+```javascript
+export const MyComponent = () => {
+  const { scrollYProgress } = useScroll();
+  return <motion.div style={{ scaleX: scrollYProgress }} />
+}
 ```
