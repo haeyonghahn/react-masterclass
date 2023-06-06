@@ -10,6 +10,7 @@
    * **[Gestures part One](#gestures-part-one)**
    * **[Gestures part Two](#gestures-part-two)**
    * **[MotionValues part One](#motionvalues-part-one)**
+   * **[MotionValues part Two](#motionvalues-part-two)**
    
 ### Installation
 __Framer Motion__   
@@ -181,3 +182,17 @@ set 메서드로 업데이트할 수 있다. 이것은 React 리렌더링을 트
 x.get() //100
 ```
 MotionValue는 문자열이나 숫자가 될 수 있다. get 메소드로 값을 읽을 수 있다.
+
+### MotionValues part Two
+[useTransform](https://www.framer.com/docs/motionvalue/##usetransform)    
+useTransform hook을 통해 MotionValues를 연결합니다.   
+useTransform()는 한 값 범위에서 다른 값 범위로 매핑하여 다른 MotionValue의 output을 변환하는 MotionValue를 만듭니다.   
+x(Motion Value)값을 다른 output값으로 변환해준다.   
+```javascript
+const x = useMotionValue(0);
+const input = [-200, 0, 200];
+const output = [0, 1, 0];
+const opacity = useTransform(x, input, output);
+
+return <motion.div drag="x" style={{ x, input, output }} />
+```
