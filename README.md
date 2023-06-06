@@ -156,6 +156,7 @@ dragElastic={0.2}
 ```
 
 ### MotionValues part One
+[shortcut](https://pro-self-studier.tistory.com/33)   
 [MotionValue](https://www.framer.com/docs/motionvalue/)   
 MotionValues는 애니메이션 값의 상태(state)와 속도(velocity)를 추적한다. 모든 모션 컴포넌트는 내부적으로 MotionValues를 사용하여 애니메이션 값의 상태와 속도를 추적한다. 일반적으로 이들은 자동으로 생성된다. (MotionValue는 React State가 아니기 때문에 Motion Value값이 바뀌어도 리랜더링이 일어나지 않는다.)
 ```javascript
