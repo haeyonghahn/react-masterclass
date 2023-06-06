@@ -7,6 +7,7 @@
    * **[Basic Animations](#basic-animations)**
    * **[Variants part One](#variants-part-one)**
    * **[Variants part Two](#variants-part-two)**
+   * **[Gestures part One](#gestures-part-one)**
    
 ### Installation
 __Framer Motion__   
@@ -82,4 +83,37 @@ const variants = {
 <motion.div inherit={false} custom={0} animate="visible" variants={variants} />
 <motion.div custom={1} animate="visible" variants={variants} />
 <motion.div custom={2} animate="visible" variants={variants} />
+```
+
+### Gestures part One
+__Hover__   
+hover 제스처는 포인터가 컴포넌트 위로 이동하거나 컴포넌트를 떠날 때를 감지합니다. onMouseEnter 및 onMouseLeave와는 달리 실제 마우스 이벤트의 결과로만 호버가 실행되도록 보장됩니다. 
+
+whileHover: VariantLabels | TargetAndTransition   
+[whileHover](https://www.framer.com/docs/gestures/#hover)     
+호버 제스처가 인식되는 동안 애니메이션할 속성 또는 변형 레이블입니다.   
+```javascript
+<motion.div whileHover={{ scale: 0.8 }} />
+```
+
+__Tap__    
+whileTap: VariantLabels | TargetAndTransition      
+[whileTap](https://www.framer.com/docs/gestures/#tap)   
+컴포넌트를 누르고 있는 동안 애니메이션할 속성 또는 변형 레이블입니다.   
+```javascript
+<motion.div whileTap={{ scale: 0.8 }} />
+```
+
+__Drag__    
+drag: boolean | "x" | "y"   
+이 요소에 대해 끌기를 활성화합니다. 기본적으로 false로 설정됩니다. 양방향으로 드래그하면 true로 설정하십시오. 특정 방향으로만 드래그하려면 "x" 또는 "y"를 설정합니다.   
+```javascript
+<motion.div drag="x" />
+```
+
+whileDrag: VariantLabels | TargetAndTransition    
+[whileDrag](https://www.framer.com/docs/gestures/#drag)    
+드래그 제스처가 인식되는 동안 애니메이션할 속성 또는 변형 레이블입니다.   
+```javascript
+<motion.div whileDrag={{ scale: 1.2 }} />
 ```
