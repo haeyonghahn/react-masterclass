@@ -13,6 +13,7 @@
    * **[MotionValues part Two](#motionvalues-part-two)**
    * **[MotionValues part Three](#motionvalues-part-three)**
    * **[SVG Animation](#svg-animation)**
+   * **[AnimatePresence](#animatepresence)**
    
 ### Installation
 __Framer Motion__   
@@ -234,3 +235,24 @@ __Line drawing__
 [Line drawing](https://www.framer.com/docs/examples/#line-drawing)     
 선 그리기 애니메이션은 pathLength, pathSpacing, pathOffset의 세 가지 특수 속성을 사용하여 많은 SVG 요소로 만들 수 있다.    
 ex) motion.circle initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}     
+
+### AnimatePresence
+[AnimatePresence](https://www.framer.com/docs/animate-presence/)     
+AnimatePresence를 사용하면 React 트리에서 컴포넌트가 제거될 때 제거되는 컴포넌트에 애니메이션 효과를 줄 수 있다. React에는 다음과 같은 수명 주기 메서드가 없기 때문에 종료 애니메이션을 활성화해야 한다.
+  
+__exit__    
+이 컴포넌트가 트리에서 제거될 때 애니메이션할 대상이다.
+```javascript
+import { motion, AnimatePresence } from "framer-motion"
+  
+export const MyComponent = ({ isVisible }) => (
+  <AnimatePresence>
+    {isVisible && (
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+  />
+  )}
+  </AnimatePresence>
+)
+```
