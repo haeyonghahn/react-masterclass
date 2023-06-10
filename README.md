@@ -12,6 +12,7 @@
    * **[MotionValues part One](#motionvalues-part-one)**
    * **[MotionValues part Two](#motionvalues-part-two)**
    * **[MotionValues part Three](#motionvalues-part-three)**
+   * **[SVG Animation](#svg-animation)**
    
 ### Installation
 __Framer Motion__   
@@ -214,3 +215,22 @@ export const MyComponent = () => {
   return <motion.div style={{ scaleX: scrollYProgress }} />
 }
 ```
+
+### SVG Animation
+[Fontawesome Airbnb Logo](https://fontawesome.com/v5.15/icons/airbnb?style=brands)    
+
+[Line drawing](https://www.framer.com/docs/examples/#line-drawing)        
+svg 엘리먼트에 'pathLength', 'pathSpacing', 'pathOffset' 속성을 사용하여 Line drawing 애니메이셔을 만들 수 있다.   
+  
+__path (SVG)__          
+[path](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/path)    
+path SVG 엘리먼트는 모양을 정의하는 일반 엘리먼트입니다. 모든 기본 모양은 path 엘리먼트로 만들 수 있다.   
+path의 속성 d는 경로의 모양을 정의한다.    
+
+Path    
+motion.path 컴포넌트는 세 가지 강력한 SVG path 속성인 pathLength, pathSpacing 및 pathOffset을 가지고 있다. 수동 경로 측정이 필요 없이 모두 0과 1 사이의 값으로 설정된다.    
+  
+__Line drawing__     
+[Line drawing](https://www.framer.com/docs/examples/#line-drawing)     
+선 그리기 애니메이션은 pathLength, pathSpacing, pathOffset의 세 가지 특수 속성을 사용하여 많은 SVG 요소로 만들 수 있다.    
+ex) motion.circle initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}     
