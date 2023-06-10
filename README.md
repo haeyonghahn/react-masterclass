@@ -14,6 +14,7 @@
    * **[MotionValues part Three](#motionvalues-part-three)**
    * **[SVG Animation](#svg-animation)**
    * **[AnimatePresence](#animatepresence)**
+   * **[Slider part One](#slider-part-one)**
    
 ### Installation
 __Framer Motion__   
@@ -248,11 +249,30 @@ import { motion, AnimatePresence } from "framer-motion"
 export const MyComponent = ({ isVisible }) => (
   <AnimatePresence>
     {isVisible && (
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-  />
-  )}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
+    )}
   </AnimatePresence>
 )
 ```
+
+### Slider part One
+[AnimatePresence](https://www.framer.com/docs/animate-presence/##unmount-animations)      
+AnimatePresence의 단일 자식 key를 변경하여 슬라이드쇼(슬라이더)와 같은 컴포넌트를 쉽게 만들 수 있습니다.
+```javascript
+export const Slideshow = ({ image }) => (
+  <AnimatePresence>
+    <motion.img
+      key={image.src}
+      src={image.src}
+      initial={{ x: 300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: -300, opacity: 0 }}
+    />
+  </AnimatePresence>
+)
+```
+[Slider 예시 코드](https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?from-embed)    
