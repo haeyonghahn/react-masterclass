@@ -15,6 +15,7 @@
    * **[SVG Animation](#svg-animation)**
    * **[AnimatePresence](#animatepresence)**
    * **[Slider part One](#slider-part-one)**
+   * **[Slider part Two](#slider-part-two)**
    
 ### Installation
 __Framer Motion__   
@@ -276,3 +277,41 @@ export const Slideshow = ({ image }) => (
 )
 ```
 [Slider 예시 코드](https://codesandbox.io/s/framer-motion-image-gallery-pqvx3?from-embed)    
+
+### Slider part Two
+react.js는 key를 보고 각 Box가 고유하다고 생각한다. react.js는 element마다 고유한 key를 가져야 한다. 그리고 key를 바꾸면 react.js는 component를 re-render 해준다. 
+  
+[custom](https://www.framer.com/docs/component/###custom)      
+각 애니메이션 컴포넌트에 대해 동적 variants를 다르게 적용할 때 사용할 수 있는 사용자 지정 데이터이다.   
+```javascript
+const variants = {
+  visible: (custom) => ({
+    opacity: 1,
+    transition: { delay: custom * 0.2 }
+  })
+}
+
+<motion.div custom={0} animate="visible" variants={variants} />
+<motion.div custom={1} animate="visible" variants={variants} />
+<motion.div custom={2} animate="visible" variants={variants} />
+```
+[exitBeforeEnter](https://www.framer.com/docs/animate-presence/###exitbeforeenter)   
+현재 `mode="wait"` 로 변경되었다. true로 설정하면 AnimatePresence는 한 번에 하나의 컴포넌트만 랜더링한다. exiting중인 컴포넌트는 entering 하는 컴포넌트가 렌더링되기 전에 exit 애니메이션을 완료한다.
+```javascript
+<Wrapper>
+  <AnimatePresence mode="wait" custom={back}>
+    <Box
+      custom={back}
+      variants={box}
+      initial="entry"
+      animate="center"
+      exit="exit"
+      key={visible}
+    >
+      {visible}
+    </Box>
+  </AnimatePresence>
+  <button onClick={nextPlease}>next</button>
+  <button onClick={prevPlease}>prev</button>
+</Wrapper>
+```
