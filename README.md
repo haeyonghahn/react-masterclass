@@ -16,6 +16,7 @@
    * **[AnimatePresence](#animatepresence)**
    * **[Slider part One](#slider-part-one)**
    * **[Slider part Two](#slider-part-two)**
+   * **[You Need to Watch This](#you-need-to-watch-this)**
    
 ### Installation
 __Framer Motion__   
@@ -315,3 +316,16 @@ const variants = {
   <button onClick={prevPlease}>prev</button>
 </Wrapper>
 ```
+
+### You Need to Watch This
+__Layout animation__    
+layout: boolean | "position" | "size"    
+true인 경우 이 컴포넌트는 레이아웃이 변경될 때 새 위치에 자동으로 애니메이션을 적용한다. 크기나 위치가 변경될 때 모션 컴포넌트의 레이아웃에 자동으로 애니메이션을 적용하려면 레이아웃 prop을 제공한다. 부모 플렉스박스 방향, 너비, 상단/오른쪽 등 레이아웃 변경의 원인이 무엇이든 상관없이 애니메이션 자체는 최대 성능을 위해 변환으로 수행된다.   
+ex) <motion.div layout>< /motion.div>   
+
+[Syncing layout animations](https://www.framer.com/docs/animate-shared-layout/#syncing-layout-animations)   
+모션 컴포넌트의 layout prop은 레이아웃이 변할 때마다, 자동으로 애니메이션을 적용한다.    
+
+[Animate between components](https://www.framer.com/docs/animate-shared-layout/#animate-between-components)    
+AnimateSharedLayout은 동일한 layoutId prop을 가진 모션 컴포넌트들 간에 애니메이션을 적용할 수 있습니다. layoutId가 있는 새 컴포넌트가 추가되고 다른 컴포넌트가 제거되면 이전 컴포넌트에서 새 컴포넌트로 레이아웃 애니메이션을 수행합니다. 새 컴포넌트는 이전 컴포넌트의 애니메이션 값도 초기 상태로 상속합니다. 따라서 시각적으로 하나의 연속 컴포넌트로 처리됩니다.   
+ex) isSelected && <motion.div layoutId="underline" />
