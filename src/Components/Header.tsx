@@ -1,4 +1,6 @@
+import { Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const Nav = styled.div`
   display: flex;
@@ -18,7 +20,7 @@ const Col = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.svg`
+const Logo = styled(motion.svg)`
   margin-right: 50px;
   width: 95px;
   height: 25px;
@@ -38,6 +40,10 @@ const Item = styled.li`
   margin-right: 20px;
   color: ${(props) => props.theme.white.darker};
   transition: color 0.3s ease-in-out;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   &:hover {
     color: ${(props) => props.theme.white.lighter};
   }
@@ -50,11 +56,40 @@ const Search = styled.span`
   }
 `;
 
+const Circle = styled.span`
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: ${(props) => props.theme.red};
+`;
+
+const logoVariants = {
+  normal: {
+    fillOpacity: 1,
+  },
+  active: {
+    fillOpacity: [0, 1, 0],
+    transition: {
+      repeat: Infinity,
+    },
+  },
+};
+
 function Header() {
+  const homeMatch = useRouteMatch("/");
+  const tvMatch = useRouteMatch("/tv");
   return (
     <Nav>
       <Col>
         <Logo
+          variants={logoVariants}
+          whileHover="active"
+          initial="normal"
           xmlns="http://www.w3.org/2000/svg"
           width="1024"
           height="276.742"
@@ -66,8 +101,12 @@ function Header() {
           />
         </Logo>
         <Items>
-          <Item>Home</Item>
-          <Item>Tv Shows</Item>
+          <Item>
+            <Link to="/">Home {homeMatch?.isExact && <Circle />}</Link>
+          </Item>
+          <Item>
+            <Link to="/tv">Tv Shows {tvMatch && <Circle />}</Link>
+          </Item>
         </Items>
       </Col>
       <Col>
