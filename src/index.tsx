@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { RecoilRoot } from "recoil";
-import { darkTheme } from "./theme";
+import { theme } from "./theme";
 
 import { createGlobalStyle } from "styled-components";
 
@@ -59,9 +59,11 @@ table {
   box-sizing: border-box;
 }
 body {
+  font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  background-color:${(props) => props.theme.bgColor};
   color:black;
+  line-height: 1.2;
+  
 }
 a {
   text-decoration:none;
@@ -76,7 +78,7 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <RecoilRoot>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <App />
     </ThemeProvider>
