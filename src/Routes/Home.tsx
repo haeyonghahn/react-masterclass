@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { IGetMoviesResult, getMovies } from "../api";
 import styled from "styled-components";
 import { useState } from "react";
@@ -81,6 +81,26 @@ const Info = styled(motion.div)`
   }
 `;
 
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+`;
+
+const BigMovie = styled(motion.div)`
+  position: fixed;
+  width: 60vw;
+  height: 70wh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+`;
+
 const boxVariants = {
   normal: {
     scale: 1,
@@ -117,6 +137,7 @@ function Home() {
     ["movies", "nowPlaying"],
     getMovies
   );
+  const { scrollY } = useScroll();
   const width = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
@@ -133,6 +154,7 @@ function Home() {
   const onBoxClicked = (movieId: number) => {
     history.push(`/movies/${movieId}`);
   };
+  const onOverlayClick = () => history.push("/");
   return (
     <Wrapper>
       {isLoading ? (
@@ -179,19 +201,16 @@ function Home() {
           </Slider>
           <AnimatePresence>
             {bigMovieMatch ? (
-              <motion.div
-                layoutId={bigMovieMatch.params.movieId}
-                style={{
-                  position: "absolute",
-                  width: "40vw",
-                  height: "80vh",
-                  backgroundColor: "red",
-                  top: 50,
-                  left: 0,
-                  right: 0,
-                  margin: "0 auto",
-                }}
-              />
+              <>
+                <Overlay
+                  onClick={onOverlayClick}
+                  exit={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                />
+                <BigMovie layoutId={bigMovieMatch.params.movieId}>
+                  hello
+                </BigMovie>
+              </>
             ) : null}
           </AnimatePresence>
         </>
