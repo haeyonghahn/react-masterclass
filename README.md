@@ -7,6 +7,7 @@
    * **[Header part Two](#header-part-two)**
    * **[Header part Four](#header-part-four)**
    * **[Slider part Two](#slider-part-two)**
+   * **[Movie Modal](#movie-modal)**
 
 ## Header part One
 [넷플릭스 로고](https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg) : 개발자 도구에서 svg 태그 복사해서 사용하기    
@@ -76,3 +77,23 @@ __initial__
 
 [slice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)      
 slice() 메서드는 어떤 배열의 begin부터 end까지(end 미포함)에 대한 얕은 복사본을 새로운 배열 객체로 반환한다. 원본 배열은 바뀌지 않는다.
+
+### Movie Modal
+__React Router V6__    
+```javascript
+// Home.tsx
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
+navigate(`/movies/${movieId}`);
+
+// App.tsx
+<Route path="/" element={< Home />}>
+  <Route path="movies/:id" element={< Home />} />
+</Route>
+```
+__useRouteMatch() => useMatch()__   
+```javascript
+import { useMatch, PathMatch } from "react-router-dom";
+const moviePathMatch: PathMatch< string> | null = useMatch("/movies/:id");
+```
