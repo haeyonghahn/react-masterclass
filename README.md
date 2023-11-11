@@ -80,6 +80,7 @@ slice() 메서드는 어떤 배열의 begin부터 end까지(end 미포함)에 �
 
 ### Movie Modal
 __React Router V6__    
+__useHistory() => useNavigate()__    
 ```javascript
 // Home.tsx
 import { useNavigate } from "react-router-dom";
