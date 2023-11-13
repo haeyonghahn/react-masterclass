@@ -8,6 +8,7 @@
    * **[Header part Four](#header-part-four)**
    * **[Slider part Two](#slider-part-two)**
    * **[Movie Modal](#movie-modal)**
+   * **[Search Redirect](#search-redirect)**
 
 ## Header part One
 [넷플릭스 로고](https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg) : 개발자 도구에서 svg 태그 복사해서 사용하기    
@@ -97,4 +98,30 @@ __useRouteMatch() => useMatch()__
 ```javascript
 import { useMatch, PathMatch } from "react-router-dom";
 const moviePathMatch: PathMatch< string> | null = useMatch("/movies/:id");
+```
+
+### Search Redirect
+__React Router V6__     
+__useHistory() => useNavigate()__     
+```javascript
+navigate(`/search?keyword=${keyword}`, { state: { keyword } });
+const {
+  state: { keyword },
+} = useLocation();
+```
+[URLSearchParams](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) 
+```javascript
+const paramsString="?keyword=%EB%A9%94%EC%9D%B4"
+const searchParams = new URLSearchParams(paramsString);
+
+searchParams.get("keyword"); // 결과: 메이
+```
+__TheMovieDB Search Movies API__   
+```
+https://api.themoviedb.org/3/search/movie?api_key=api_key&language=en-US&query=hello&page=1&include_adult=false
+https://developers.themoviedb.org/3/search/search-movies
+```
+__TheMovieDB Search TV Shows API__   
+```
+https://developers.themoviedb.org/3/search/search-tv-shows
 ```
